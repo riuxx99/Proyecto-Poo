@@ -18,6 +18,7 @@ public class Aficionado extends Usuario{
     private int telefono;
     private String fechaNacimiento;
     private String tipoAficionado;
+    private PlanComprado myPlanesComprados;
     
     //Realizamos el constructor
     
@@ -92,8 +93,8 @@ public class Aficionado extends Usuario{
 
     @Override
     public String toString() {
-        return super.toString()+"Aficionado: \n cedula=" + cedula + "\n nombre=" + nombre + "\n apellido=" + apellido + "\n correo=" + correo + "\n telefono=" + telefono + "\n fechaNacimiento=" + fechaNacimiento + 
-                "\n tipoAficionado=" + tipoAficionado ;
+        return super.toString()+"Aficionado: \n cedula=" + cedula + "\n nombre=" + nombre + "\n apellido=" + apellido + "\n correo=" + correo + "\n telefono=" + telefono + "\n Fecha de Nacimiento=" + fechaNacimiento + 
+                "\n Tipo de Aficionado=" + tipoAficionado + "\n Planes comprados= " + myPlanesComprados;
     }
     
     
