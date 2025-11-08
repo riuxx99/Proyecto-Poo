@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Negocio;
-import java.util.ArrayList;
+
 /**
  *
  * @author IAN
@@ -14,17 +14,22 @@ public class Tribuna {
     private String id;
     private String nombre;
     private float precioBase;
-    private ArrayList<Puesto> myPuestos;
+    private Puesto myPuestos[];
     
     //Realizo el constructor
     public Tribuna(){
-        this.myPuestos = new ArrayList<Puesto> ();
+        
     }
-
+    //Constructor con parametros
     public Tribuna(String id, String nombre, float precioBase) {
         this.id = id;
         this.nombre = nombre;
         this.precioBase = precioBase;
+        this.myPuestos = new Puesto[80];
+        
+        for(int i=0; i<80;i++){
+            myPuestos[i] = new Puesto(i+1,id,this.asignarNivel(i));
+        }
     }
     
     //Defino los getters, setters y toString
@@ -53,12 +58,23 @@ public class Tribuna {
         this.precioBase = precioBase;
     }
 
-    public ArrayList<Puesto> getMyPuestos() {
+    public Puesto[] getMyPuestos() {
         return myPuestos;
     }
-
-    public void setMyPuestos(ArrayList<Puesto> myPuestos) {
-        this.myPuestos = myPuestos;
+    
+    //metodo para asignar un nivel al puesto
+    public int asignarNivel(int i){
+        int nivel = 0;
+        if(i>=1 && i<=20){
+            nivel = 1;
+        }else if(i>=21 && i<=40){
+            nivel = 2;
+        }else if(i>=41 && i<=60){
+            nivel = 3;
+        }else{
+            nivel = 4;
+        }
+        return nivel;
     }
 
     @Override

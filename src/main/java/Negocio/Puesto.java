@@ -14,6 +14,7 @@ public class Puesto {
     private int numero;
     private String idTribuna;
     private int nivel;
+    private String numeroCompuesto;
     
     //Realizo el constructor
     public Puesto(){
@@ -24,6 +25,7 @@ public class Puesto {
         this.numero = numero;
         this.idTribuna = idTribuna;
         this.nivel = nivel;
+        this.numeroCompuesto = idTribuna+"-"+numero;
     }
     
     //Defino los getters, setters y toString
@@ -50,6 +52,9 @@ public class Puesto {
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+    public String getNumeroCompuesto() {
+        return numeroCompuesto;
     }
 
     @Override
