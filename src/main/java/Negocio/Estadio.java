@@ -8,10 +8,10 @@ package Negocio;
  *
  * @author IAN
  */
-public class AppEstadio {
+public class Estadio {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        System.out.print("ASkda");
+        System.out.println("Funciona");
     }
 }
