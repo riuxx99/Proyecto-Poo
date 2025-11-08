@@ -10,4 +10,51 @@ package Negocio;
  */
 public class Puesto {
     
+    //Defino los atributos de la clase
+    private int numero;
+    private String idTribuna;
+    private int nivel;
+    
+    //Realizo el constructor
+    public Puesto(){
+        
+    }
+
+    public Puesto(int numero, String idTribuna, int nivel) {
+        this.numero = numero;
+        this.idTribuna = idTribuna;
+        this.nivel = nivel;
+    }
+    
+    //Defino los getters, setters y toString
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getIdTribuna() {
+        return idTribuna;
+    }
+
+    public void setIdTribuna(String idTribuna) {
+        this.idTribuna = idTribuna;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    @Override
+    public String toString() {
+        return "Puesto: \n numero=" + numero + "\n idTribuna=" + idTribuna + "\n nivel=" + nivel;
+    }
+    
 }
