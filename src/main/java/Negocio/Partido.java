@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Negocio;
-
+import java.util.ArrayList;
 /**
  *
  * @author fabian
@@ -16,18 +16,17 @@ public class Partido {
     private String equipoLocal;
     private String equipoVisitante;
     private String estado;
-    
     //Realizo los constructors
     public Partido(){
         
     }
 
-    public Partido(String fecha, String hora, String equipoLocal, String equipoVisitante, String estado) {
+    public Partido(String fecha, String hora, String equipoLocal, String equipoVisitante) {
         this.fecha = fecha;
         this.hora = hora;
         this.equipoLocal = equipoLocal;
         this.equipoVisitante = equipoVisitante;
-        this.estado = estado;
+        this.estado = "Activo";
     }
     
     //Defino los getters, setters y toString
@@ -71,6 +70,7 @@ public class Partido {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    
 
     @Override
     public String toString() {
