@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Negocio;
-
+import java.util.ArrayList
 /**
  *
  * @author IAN
@@ -18,7 +18,7 @@ public class Aficionado extends Usuario{
     private int telefono;
     private String fechaNacimiento;
     private String tipoAficionado;
-    private PlanComprado myPlanesComprados;
+    private ArrayList<PlanComprado> myPlanesComprados;
     
     //Realizamos el constructor
     
@@ -31,6 +31,7 @@ public class Aficionado extends Usuario{
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.tipoAficionado = tipoAficionado;
+        this.myPlanesComprados = new ArrayList<PlanComprado>();
     }
     
     //Declaramos los gettters, los setters y el toString
