@@ -43,17 +43,30 @@ public class Estadio {
         }
         return u;
     }
-    
+    private Usuario validarCedula(int cedula){
+        Usuario u = null;
+        for(Usuario us: this.myUsuarios){
+            Aficionado a = (Aficionado) us;
+            if(a.getCedula()==cedula){
+                u=a;
+                break;
+            }
+        }
+        return u;
+    }
     
     //RF 1 permite registrar usuarios de clase aficionado
     public String registrarAficionado(String username, String clave, int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado){
-        
+        String cad;
         if(this.validarUsername(username) != null){
             return "Ya existe un usuario con ese nombre, por favor elija otro nombre";
         }
+        if(this.validarCedula(cedula) != null){
+            return "Ya existe un usuario con esa cedula, intente de nuevo";
+        }
         this.myUsuarios.add(new Aficionado(cedula, nombre, apellido, correo, telefono, fechaNacimiento, tipoAficionado, username, clave));
-        String cad= ((Aficionado)this.myUsuarios.getLast()).toString();
-        return "Usuario registrado exitosamente \n"+ cad;
+        cad = "USUARIO REGISTRADO EXITOSAMENTE";
+        return cad;
     }
     
     //Registrar Partido
@@ -75,29 +88,16 @@ public class Estadio {
         }
         return false;
     }
-    //
-    /*private String registrarAdministrador(String username, String clave){
+    
+    public boolean iniciarSesion(String usuario, String clave){
         
-        if(this.validarUsername(username) != null){
-            return "Ya existe un usuario con ese nombre, por favor elija otro nombre";
+        for(Usuario u:this.myUsuarios){
+            if(u.getUsername().equals(usuario)&& u.getClave().equals(clave)){
+                return true;
+            }
         }
-        if(this.validarClave(clave) != null){
-            return "Ya existe un usuario con esa clave, por favor digite otra clave";
-        }
-        this.myUsuarios.add(new Admin(username, clave));
-        String cad= ((Admin)this.myUsuarios.getLast()).toString();
-        return "Usuario registrado exitosamente \n"+ cad;
+        return false;
     }
-        */
 
-    public static void main(String args[]) {
-        
-        Estadio e = new Estadio(); // crear un objeto Estadio
-       
-        System.out.println(e.registrarPartido("12-11-2025","11:30","Cúcuta Deportivo","Nacional"));
-        System.out.println(e.registrarPartido("12-11-2025","1:30","Cúcuta Deportivo","Nacional"));
-        
-      
-       
-    }
+    
 }

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Negocio;
-import java.util.ArrayList
+import java.util.ArrayList;
 /**
  *
  * @author IAN
