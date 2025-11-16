@@ -64,7 +64,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jButton2.setText("Ver Planes de Aficionado");
 
-        logIn.setText("Iniciar Sesión");
+        logIn.setText("Registrar Aficionado");
         logIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logInActionPerformed(evt);
