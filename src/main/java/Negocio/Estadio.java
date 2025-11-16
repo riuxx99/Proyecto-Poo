@@ -74,7 +74,7 @@ public class Estadio {
     }
     
     //RF 1 permite registrar usuarios de clase aficionado
-    public String registrarAficionado(String username, String clave, int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado){
+    public String registrarAficionado(int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado){
         String cad;
         if(this.validarNombre(nombre, apellido) != null){
             return "Ya existe un usuario con ese nombre, por favor elija otro nombre";
@@ -82,7 +82,7 @@ public class Estadio {
         if(this.validarCedula(cedula) != null){
             return "Ya existe un usuario con esa cedula, intente de nuevo";
         }
-        this.myUsuarios.add(new Aficionado(cedula, nombre, apellido, correo, telefono, fechaNacimiento, tipoAficionado, username, clave));
+        this.myUsuarios.add(new Aficionado(cedula, nombre, apellido, correo, telefono, fechaNacimiento, tipoAficionado));
         cad = "USUARIO REGISTRADO EXITOSAMENTE";
         return cad;
     }
