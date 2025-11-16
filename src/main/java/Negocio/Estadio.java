@@ -3,7 +3,10 @@
  */
 
 package Negocio;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 /**
  *
  * @author IAN
@@ -47,11 +50,12 @@ public class Estadio {
     }
     
     //Realizo metodos para validar los nombres de usuario y las contraseñas
-    private Usuario validarUsername(String username){
+    private Usuario validarNombre(String nombre, String apellido){
         Usuario u = null;
         for(Usuario us: this.myUsuarios){
-            if(us.getUsername().equals(username)){
-                u=us;
+            Aficionado a = (Aficionado) us;
+            if(a.getNombre().equals(nombre) && a.getApellido().equals(apellido)){
+                u=a;
                 break;
             }
         }
@@ -72,7 +76,7 @@ public class Estadio {
     //RF 1 permite registrar usuarios de clase aficionado
     public String registrarAficionado(String username, String clave, int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado){
         String cad;
-        if(this.validarUsername(username) != null){
+        if(this.validarNombre(nombre, apellido) != null){
             return "Ya existe un usuario con ese nombre, por favor elija otro nombre";
         }
         if(this.validarCedula(cedula) != null){
@@ -135,6 +139,28 @@ public class Estadio {
         }
         return false;
     }
-
+    
+    public String validarFechaPartidoTorneo(Date dI, Date dF, String torneo){
+        /*Date fecha = dI;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fecha);
+        
+        int[] fechaParte = new int[3];
+        
+        fechaParte[0] = cal.get(Calendar.DAY_OF_MONTH);
+        fechaParte[1] = cal.get(Calendar.MONTH);
+        fechaParte[2] = cal.get(Calendar.YEAR);*/
+        
+        Date fecha = dI;
+        SimpleDateFormat formato = new SimpleDateFormat("DD/MM/YYYY");
+        String fechaParte = formato.format(fecha);
+        String[] partes = fechaParte.split("/");
+        Torneo t = this.buscarTorneo(torneo);
+        for(int i = 0; i<partes.length; i++){
+            
+        }
+        
+        return null;
+    }
     
 }
