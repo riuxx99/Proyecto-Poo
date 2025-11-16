@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Negocio;
-
+import java.util.ArrayList;
 /**
  *
  * @author fabian
@@ -13,17 +13,18 @@ public class Torneo {
     private String nombre;
     private String fechaInicio;
     private String fechaFin;
-    private Partido myPartidos;
+    private ArrayList<Partido> myPartidos;
     
     //Realizo el constructor
     public Torneo(){
         
     }
 
-    public Torneo(String nombre, String fechaInicio, String fechaFin) {
+    public Torneo(String nombre) {
         this.nombre = nombre;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
+        this.fechaInicio = null;
+        this.fechaFin = null;
+        this.myPartidos = new ArrayList<>();
     }
     
     //Defino los getters, setters y toString
@@ -50,6 +51,13 @@ public class Torneo {
 
     public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public ArrayList<Partido> getMyPartidos() {
+        return myPartidos;
+    }
+    public void añadirPartido(Partido p){
+        this.myPartidos.add(p);
     }
 
     @Override

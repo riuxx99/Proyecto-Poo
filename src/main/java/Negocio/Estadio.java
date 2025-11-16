@@ -12,9 +12,10 @@ public class Estadio {
     //Defino los ArrayList de las clases que se van a usar
     private Tribuna[] myTribunas;
     private ArrayList<Plan> myPlanes;
-    private ArrayList<Torneo> myTorneos;
+    private Torneo[] myTorneos;
     private ArrayList<Usuario> myUsuarios;
-    private ArrayList<Partido> myPartidos;
+    private float valorBoleta;
+    
     
     //Defino el constructor
     
@@ -25,11 +26,24 @@ public class Estadio {
         myTribunas[1]= new Tribuna("2","Sur",2000);
         myTribunas[2] = new Tribuna("3","Oriente",2000);
         myTribunas[3] = new Tribuna("4","Occidente",2000);
-        //Inicializo los ArrayList
+        //Crear torneos
+        this.myTorneos = new Torneo[4];
+        this.myTorneos[0] =new Torneo("Liga BetPlay Dimayor primera A");
+        this.myTorneos[1] =new Torneo("La primera B");
+        this.myTorneos[2] =new Torneo("CONMEBOL Libertadores");
+        this.myTorneos[3] =new Torneo("CONMEBOL Sudamericana");
         this.myPlanes = new ArrayList<Plan> ();
-        this.myTorneos = new ArrayList<Torneo> ();
         this.myUsuarios = new ArrayList<Usuario> ();
-        this.myPartidos = new ArrayList<Partido> ();
+        this.valorBoleta = 0;
+         
+    }
+    //Obtener valor boleta
+    public float getValorBoleta(){
+        return this.valorBoleta;
+    }
+    //Actualizar el valor de la boleta
+    public void setValorBoleta(float valor){
+        this.valorBoleta = valor;
     }
     
     //Realizo metodos para validar los nombres de usuario y las contraseñas
@@ -70,25 +84,48 @@ public class Estadio {
     }
     
     //Registrar Partido
-    public String registrarPartido(String fecha, String hora, String equipoLocal, String equipoVisitante){
-        String cad ="";
+    public String registrarPartido(String torneo,String fecha, String hora, String equipoLocal, String equipoVisitante){
+        String cad;
         if(this.validarFecha(fecha)){
             return"YA HAY UN PARTIDO PARA LA FECHA INGRESADA...";
         }
-        myPartidos.add(new Partido(fecha,hora,equipoLocal,equipoVisitante));
+        Torneo t = buscarTorneo(torneo);
+        t.añadirPartido(new Partido(fecha,hora,equipoLocal,equipoVisitante));
         cad="PARTIDO REGISTRADO CON EXITO";
         return cad;
     }
     //Validar que no halla un partido en la fecha ingresada
     private boolean validarFecha(String fecha){
-        for(Partido p: this.myPartidos){
-            if(p.getFecha().equals(fecha)){
-                return true;
+        for(Torneo t: this.myTorneos){
+            for(Partido p: t.getMyPartidos()){
+                if(p.getFecha().equals(fecha)){
+                    return true;
+                }
             }
         }
+        
         return false;
     }
     
+    //Devuelve un torneo
+    private Torneo buscarTorneo(String torneo){
+        for(Torneo t :this.myTorneos){
+            if(t.getNombre().equals(torneo)){
+                return t;
+            }
+        }
+        return null;
+    }
+    
+    //Dar Fecha de inicio y fin a un torneo
+    public String establecerFechas(String torneo,String fechaInicio,String fechaFin){
+        String cad;
+        Torneo t = this.buscarTorneo(torneo);
+        t.setFechaInicio(fechaInicio);
+        t.setFechaFin(fechaFin);
+        cad = "Se han actualizado las fechas con exito";
+        return cad;
+    }
     public boolean iniciarSesion(String usuario, String clave){
         
         for(Usuario u:this.myUsuarios){
