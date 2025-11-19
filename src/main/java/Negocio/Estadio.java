@@ -134,18 +134,35 @@ public class Estadio {
         Torneo t = this.buscarTorneo(torneo);
         Aficionado a = this.validarCedula(cedula);
         double valorPlan = this.calcularValorPlan(planAComprar, torneo);
-        
+            
         return null;
     }
     private double calcularValorPlan(String plan,String torneo){
         Torneo t = this.buscarTorneo(torneo);
         double valor=t.getValorBoleta()*t.getMyPartidos().size();
-        
-        if(plan.equals("Basico")){
-            valor *=0.90;
-        }else if(plan.equals("Premium")){
-            valor *=0.80;
+        if(t.getNombre().equals("Liga BetPlay Dimayor primera A")||t.getNombre().equals("La primera B")){
+          if(plan.equals("Basico")){
+                valor *=0.90;
+            }else if(plan.equals("Premium")){
+                valor *=0.80;
+            }  
         }
+        if(t.getNombre().equals("CONMEBOL Libertadores")){
+            if(plan.equals("Basico")){
+                valor *=0.85;
+            }else if(plan.equals("Premium")){
+                valor *=0.75;
+            } 
+        }
+        if(t.getNombre().equals("CONMEBOL Sudamericana")){
+            if(plan.equals("Basico")){
+                valor *=0.80;
+            }else if(plan.equals("Premium")){
+                valor *=0.70;
+            } 
+        }
+        
+        
         return valor;
     }
     
