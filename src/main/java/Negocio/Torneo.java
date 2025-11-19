@@ -14,7 +14,7 @@ public class Torneo {
     private String fechaInicio;
     private String fechaFin;
     private ArrayList<Partido> myPartidos;
-    
+    private double valorBasicoBoleta;
     //Realizo el constructor
     public Torneo(){
         
@@ -25,6 +25,7 @@ public class Torneo {
         this.fechaInicio = null;
         this.fechaFin = null;
         this.myPartidos = new ArrayList<>();
+        this.valorBasicoBoleta = 0F;
     }
     
     //Defino los getters, setters y toString
@@ -52,14 +53,24 @@ public class Torneo {
     public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
-
+    
+    //Obtener valor boleta
+    public double getValorBoleta(){
+        return this.valorBasicoBoleta;
+    }
+    
+    //Actualizar el valor de la boleta
+    public void setValorBoleta(float valor){
+        this.valorBasicoBoleta = valor;
+    }
     public ArrayList<Partido> getMyPartidos() {
         return myPartidos;
     }
     public void añadirPartido(Partido p){
         this.myPartidos.add(p);
     }
-
+    
+    
     @Override
     public String toString() {
         return "Torneo: \n nombre=" + nombre + "\n Fecha de Inicio=" + fechaInicio + "\n Fecha de Finalizacion=" + fechaFin + "\n Partidos=" + myPartidos;

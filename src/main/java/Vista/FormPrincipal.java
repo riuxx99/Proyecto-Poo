@@ -4,6 +4,7 @@
  */
 package Vista;
 import Negocio.Estadio;
+import javax.swing.JOptionPane;
 /**
  *
  * @author fabian
@@ -37,7 +38,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         logIn = new javax.swing.JButton();
         cmdRegistrarPartido = new javax.swing.JButton();
-        asignarFechaTorneo = new javax.swing.JButton();
+        administrarTorneos = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -62,7 +63,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jButton1.setText("Ver Todos Los Partidos");
 
-        jButton2.setText("Ver Planes de Aficionado");
+        jButton2.setText("Vender Plan");
 
         logIn.setText("Registrar Aficionado");
         logIn.addActionListener(new java.awt.event.ActionListener() {
@@ -78,10 +79,10 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
-        asignarFechaTorneo.setText("Asignar Fechas Torneos");
-        asignarFechaTorneo.addActionListener(new java.awt.event.ActionListener() {
+        administrarTorneos.setText("Administrar Torneos");
+        administrarTorneos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                asignarFechaTorneoActionPerformed(evt);
+                administrarTorneosActionPerformed(evt);
             }
         });
 
@@ -92,12 +93,13 @@ public class FormPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(asignarFechaTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(administrarTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(logIn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmdRegistrarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logIn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -107,14 +109,14 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(logIn)
                 .addGap(18, 18, 18)
                 .addComponent(cmdRegistrarPartido)
                 .addGap(18, 18, 18)
-                .addComponent(asignarFechaTorneo)
+                .addComponent(administrarTorneos)
                 .addGap(56, 56, 56))
         );
 
@@ -146,8 +148,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInActionPerformed
-        FormIniciarSesion myFS = new FormIniciarSesion(this);
-        myFS.setVisible(true);
+        FormRegistrarAficionado myFRA = new FormRegistrarAficionado(this);
+        myFRA.setVisible(true);
     }//GEN-LAST:event_logInActionPerformed
 
     private void cmdRegistrarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegistrarPartidoActionPerformed
@@ -156,10 +158,10 @@ public class FormPrincipal extends javax.swing.JFrame {
         frp.setVisible(true);
     }//GEN-LAST:event_cmdRegistrarPartidoActionPerformed
 
-    private void asignarFechaTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarFechaTorneoActionPerformed
-        FormFechasTorneo myFFT = new FormFechasTorneo(this);
+    private void administrarTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrarTorneosActionPerformed
+        FormAdministrarTorneo myFFT = new FormAdministrarTorneo(this);
         myFFT.setVisible(true);
-    }//GEN-LAST:event_asignarFechaTorneoActionPerformed
+    }//GEN-LAST:event_administrarTorneosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,7 +199,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton asignarFechaTorneo;
+    private javax.swing.JButton administrarTorneos;
     private javax.swing.JButton cmdRegistrarPartido;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -16,9 +16,8 @@ public class Estadio {
     private Tribuna[] myTribunas;
     private ArrayList<Plan> myPlanes;
     private Torneo[] myTorneos;
-    private ArrayList<Usuario> myUsuarios;
-    private float valorBoleta;
-    
+    private ArrayList<Aficionado> myAficionados;
+   
     
     //Defino el constructor
     
@@ -36,53 +35,31 @@ public class Estadio {
         this.myTorneos[2] =new Torneo("CONMEBOL Libertadores");
         this.myTorneos[3] =new Torneo("CONMEBOL Sudamericana");
         this.myPlanes = new ArrayList<Plan> ();
-        this.myUsuarios = new ArrayList<Usuario> ();
-        this.valorBoleta = 0;
-         
-    }
-    //Obtener valor boleta
-    public float getValorBoleta(){
-        return this.valorBoleta;
-    }
-    //Actualizar el valor de la boleta
-    public void setValorBoleta(float valor){
-        this.valorBoleta = valor;
+        this.myAficionados= new ArrayList<Aficionado> ();
     }
     
-    //Realizo metodos para validar los nombres de usuario y las contraseñas
-    private Usuario validarNombre(String nombre, String apellido){
-        Usuario u = null;
-        for(Usuario us: this.myUsuarios){
-            Aficionado a = (Aficionado) us;
-            if(a.getNombre().equals(nombre) && a.getApellido().equals(apellido)){
-                u=a;
-                break;
-            }
-        }
-        return u;
-    }
-    private Usuario validarCedula(int cedula){
-        Usuario u = null;
-        for(Usuario us: this.myUsuarios){
-            Aficionado a = (Aficionado) us;
+    
+    
+    //Metodo para validar la cedula de un aficionado
+    private Aficionado validarCedula(int cedula){
+        Aficionado af = null;
+        for(Aficionado a: this.myAficionados){
             if(a.getCedula()==cedula){
-                u=a;
+                af=a;
                 break;
             }
         }
-        return u;
+        return af;
     }
     
     //RF 1 permite registrar usuarios de clase aficionado
     public String registrarAficionado(int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado){
         String cad;
-        if(this.validarNombre(nombre, apellido) != null){
-            return "Ya existe un usuario con ese nombre, por favor elija otro nombre";
-        }
+        
         if(this.validarCedula(cedula) != null){
             return "Ya existe un usuario con esa cedula, intente de nuevo";
         }
-        this.myUsuarios.add(new Aficionado(cedula, nombre, apellido, correo, telefono, fechaNacimiento, tipoAficionado));
+        //this.myUsuarios.add(new Aficionado(cedula, nombre, apellido, correo, telefono, fechaNacimiento, tipoAficionado));
         cad = "USUARIO REGISTRADO EXITOSAMENTE";
         return cad;
     }
@@ -90,10 +67,20 @@ public class Estadio {
     //Registrar Partido
     public String registrarPartido(String torneo,String fecha, String hora, String equipoLocal, String equipoVisitante){
         String cad;
+        Torneo t = buscarTorneo(torneo);
+        if(t.getFechaInicio()==null){
+            return "EL TORNEO NO TIENE FECHA DE INICIO...";
+        }
+        if(t.getFechaFin()==null){
+            return "EL TORNEO NO TIENE FECHA DE FIN...";
+        }
+        if(!this.validarFechaPartidoTorneo(torneo,fecha)){
+            return "FECHA FUERA DE RANGO...";
+        }
         if(this.validarFecha(fecha)){
             return"YA HAY UN PARTIDO PARA LA FECHA INGRESADA...";
         }
-        Torneo t = buscarTorneo(torneo);
+        
         t.añadirPartido(new Partido(fecha,hora,equipoLocal,equipoVisitante));
         cad="PARTIDO REGISTRADO CON EXITO";
         return cad;
@@ -122,45 +109,44 @@ public class Estadio {
     }
     
     //Dar Fecha de inicio y fin a un torneo
-    public String establecerFechas(String torneo,String fechaInicio,String fechaFin){
+    public String actualizarTorneo(String torneo,String fechaInicio,String fechaFin,float valorBasico){
         String cad;
         Torneo t = this.buscarTorneo(torneo);
         t.setFechaInicio(fechaInicio);
         t.setFechaFin(fechaFin);
-        cad = "Se han actualizado las fechas con exito";
+        t.setValorBoleta(valorBasico);
+        cad = "Se han actualizado los datos con exito";
         return cad;
     }
-    public boolean iniciarSesion(String usuario, String clave){
-        
-        for(Usuario u:this.myUsuarios){
-            if(u.getUsername().equals(usuario)&& u.getClave().equals(clave)){
-                return true;
-            }
-        }
-        return false;
-    }
     
-    public String validarFechaPartidoTorneo(Date dI, Date dF, String torneo){
-        /*Date fecha = dI;
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(fecha);
-        
-        int[] fechaParte = new int[3];
-        
-        fechaParte[0] = cal.get(Calendar.DAY_OF_MONTH);
-        fechaParte[1] = cal.get(Calendar.MONTH);
-        fechaParte[2] = cal.get(Calendar.YEAR);*/
-        
-        Date fecha = dI;
-        SimpleDateFormat formato = new SimpleDateFormat("DD/MM/YYYY");
-        String fechaParte = formato.format(fecha);
-        String[] partes = fechaParte.split("/");
+    //Validar que la fecha del partido a registrar esté dentro del rango de inicio/fin de un torneo
+    private boolean validarFechaPartidoTorneo(String torneo,String fechaPartido){
         Torneo t = this.buscarTorneo(torneo);
-        for(int i = 0; i<partes.length; i++){
-            
-        }
+        
+        //pasar la fecha de los partidos a int
+        int fechaInicioInt = Integer.parseInt(t.getFechaInicio().replace("-",""));  
+        int fechaFinInt = Integer.parseInt(t.getFechaFin().replace("-",""));
+        int fechaPartidoInt = Integer.parseInt(fechaPartido.replace("-",""));
+        
+        return fechaPartidoInt>=fechaInicioInt && fechaPartidoInt<=fechaFinInt;
+    }
+    //vender plan a aficionado
+    public String venderPlan(String torneo, int cedula,String planAComprar){
+        Torneo t = this.buscarTorneo(torneo);
+        Aficionado a = this.validarCedula(cedula);
+        double valorPlan = this.calcularValorPlan(planAComprar, torneo);
         
         return null;
     }
-    
+    private double calcularValorPlan(String plan,String torneo){
+        Torneo t = this.buscarTorneo(torneo);
+        double valor=t.getValorBoleta()*t.getMyPartidos().size();
+        
+        if(plan.equals("Basico")){
+            valor *=0.90;
+        }else if(plan.equals("Premium")){
+            valor *=0.80;
+        }
+        return valor;
+    }
 }

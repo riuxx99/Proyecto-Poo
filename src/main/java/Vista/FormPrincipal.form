@@ -11,7 +11,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Default Cursor"/>
+      <Color id="Cursor Por defecto"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -91,12 +91,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="asignarFechaTorneo" min="-2" pref="163" max="-2" attributes="0"/>
+                      <Component id="administrarTorneos" min="-2" pref="163" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="163" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <Component id="logIn" min="-2" pref="163" max="-2" attributes="0"/>
                       <Component id="cmdRegistrarPartido" min="-2" pref="163" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="630" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="logIn" alignment="0" pref="163" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
@@ -109,14 +111,14 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="9" max="32767" attributes="0"/>
                   <Component id="logIn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="cmdRegistrarPartido" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="asignarFechaTorneo" min="-2" max="-2" attributes="0"/>
+                  <Component id="administrarTorneos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -138,7 +140,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver Planes de Aficionado"/>
+            <Property name="text" type="java.lang.String" value="Vender Plan"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="logIn">
@@ -157,12 +159,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdRegistrarPartidoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="asignarFechaTorneo">
+        <Component class="javax.swing.JButton" name="administrarTorneos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Asignar Fechas Torneos"/>
+            <Property name="text" type="java.lang.String" value="Administrar Torneos"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="asignarFechaTorneoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="administrarTorneosActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

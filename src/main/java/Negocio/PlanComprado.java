@@ -16,7 +16,7 @@ public class PlanComprado {
     private String fechaCompra;
     private String torneo;
     private String fechaExpiracion;
-    private float precioVenta;
+    private double precioVenta;
     
     //Realizo el constructor
 
@@ -57,7 +57,7 @@ public class PlanComprado {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public float getPrecioVenta() {
+    public double getPrecioVenta() {
         return precioVenta;
     }
 

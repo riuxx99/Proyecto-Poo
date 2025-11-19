@@ -16,6 +16,7 @@ public class Partido {
     private String equipoLocal;
     private String equipoVisitante;
     private String estado;
+   
     //Realizo los constructors
     public Partido(){
         

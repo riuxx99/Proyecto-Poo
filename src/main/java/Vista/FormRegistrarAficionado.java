@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
 public class FormRegistrarAficionado extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormRegistrarAficionado.class.getName());
-    FormIniciarSesion myP;
+    FormPrincipal myP;
     /**
      * Creates new form FormRegistrarAficionado
      */
-    public FormRegistrarAficionado(FormIniciarSesion p) {
+    public FormRegistrarAficionado(FormPrincipal p) {
         initComponents();
         this.myP = p;
     }
@@ -47,7 +47,6 @@ public class FormRegistrarAficionado extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
-        iniciarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,24 +75,12 @@ public class FormRegistrarAficionado extends javax.swing.JFrame {
 
         jLabel10.setText("Cedula:");
 
-        iniciarSesion.setText("Iniciar Sesión");
-        iniciarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iniciarSesionActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(registrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(iniciarSesion))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +113,10 @@ public class FormRegistrarAficionado extends javax.swing.JFrame {
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel10)))
+                        .addComponent(jLabel10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(registrar)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -162,11 +152,9 @@ public class FormRegistrarAficionado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(registrar)
-                    .addComponent(iniciarSesion))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(registrar)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,15 +169,8 @@ public class FormRegistrarAficionado extends javax.swing.JFrame {
         int telefono = Integer.parseInt(this.txtTelefono.getText());
         String fechaNacimiento = this.txtFecha.getText();
         String tipoAficionado = this.cmbTipo.getSelectedItem().toString();
-        JOptionPane.showMessageDialog(this,this.myP.getFormPrincipal().getMyEstadio().registrarAficionado(cedula ,nombre, apellidos, correo, telefono, fechaNacimiento, tipoAficionado) );
+        JOptionPane.showMessageDialog(this,this.myP.getMyEstadio().registrarAficionado(cedula ,nombre, apellidos, correo, telefono, fechaNacimiento, tipoAficionado) );
     }//GEN-LAST:event_registrarActionPerformed
-
-    private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
-        dispose();
-        FormIniciarSesion myFS = new FormIniciarSesion(this.myP.getFormPrincipal());
-        myFS.setVisible(true);
-        
-    }//GEN-LAST:event_iniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,7 +179,6 @@ public class FormRegistrarAficionado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbTipo;
-    private javax.swing.JButton iniciarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;

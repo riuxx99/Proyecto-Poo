@@ -10,14 +10,14 @@ import javax.swing.JOptionPane;
  *
  * @author IAN
  */
-public class FormFechasTorneo extends javax.swing.JFrame {
+public class FormAdministrarTorneo extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormFechasTorneo.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormAdministrarTorneo.class.getName());
     private FormPrincipal myFP;
     /**
      * Creates new form FormFechasTorneo
      */
-    public FormFechasTorneo(FormPrincipal p) {
+    public FormAdministrarTorneo(FormPrincipal p) {
         initComponents();
         this.myFP=p;
     }
@@ -38,12 +38,14 @@ public class FormFechasTorneo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         fechaFin = new com.toedter.calendar.JDateChooser();
-        establecerFechas = new javax.swing.JButton();
+        actualizarInfo = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtValorBasico = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("ESTABLECER FECHAS TORNEOS");
+        jLabel1.setText("ADMINISTRAR TORNEOS");
 
         jLabel2.setText("Torneo:");
 
@@ -54,17 +56,28 @@ public class FormFechasTorneo extends javax.swing.JFrame {
 
         jLabel4.setText("Fecha Fin:");
 
-        establecerFechas.setText("ESTABLECER FECHAS");
-        establecerFechas.addActionListener(new java.awt.event.ActionListener() {
+        actualizarInfo.setText("Actualizar Información");
+        actualizarInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                establecerFechasActionPerformed(evt);
+                actualizarInfoActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Valor Básico Boleta:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(actualizarInfo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,29 +86,27 @@ public class FormFechasTorneo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbTorneo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(26, 26, 26)
-                                .addComponent(fechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(89, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(establecerFechas)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtValorBasico))))
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(cmbTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -107,15 +118,19 @@ public class FormFechasTorneo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(establecerFechas)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtValorBasico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(actualizarInfo)
+                .addGap(42, 42, 42))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void establecerFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_establecerFechasActionPerformed
+    private void actualizarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarInfoActionPerformed
         String torneo = this.cmbTorneo.getSelectedItem().toString();
         Date dI = this.fechaInicio.getDate();
         Date dF = this.fechaFin.getDate();
@@ -124,10 +139,11 @@ public class FormFechasTorneo extends javax.swing.JFrame {
         java.sql.Date fechaInicialSql = new java.sql.Date(fI);
         java.sql.Date fechaFinSql = new java.sql.Date(fF);
         String fechaInicial = fechaInicialSql.toString();
-        String fechaFin = fechaFinSql.toString();
-        String mensaje = this.myFP.getMyEstadio().establecerFechas(torneo, fechaInicial, fechaFin);
+        String fechaFinal = fechaFinSql.toString();
+        float valorBasico = Float.parseFloat(this.txtValorBasico.getText());
+        String mensaje = this.myFP.getMyEstadio().actualizarTorneo(torneo, fechaInicial, fechaFinal,valorBasico);
         JOptionPane.showMessageDialog(this, mensaje);
-    }//GEN-LAST:event_establecerFechasActionPerformed
+    }//GEN-LAST:event_actualizarInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,13 +151,15 @@ public class FormFechasTorneo extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualizarInfo;
     private javax.swing.JComboBox<String> cmbTorneo;
-    private javax.swing.JButton establecerFechas;
     private com.toedter.calendar.JDateChooser fechaFin;
     private com.toedter.calendar.JDateChooser fechaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtValorBasico;
     // End of variables declaration//GEN-END:variables
 }
