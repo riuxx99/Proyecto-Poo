@@ -169,6 +169,9 @@ public class FormRegistrarAficionado extends javax.swing.JFrame {
         int telefono = Integer.parseInt(this.txtTelefono.getText());
         String fechaNacimiento = this.txtFecha.getText();
         String tipoAficionado = this.cmbTipo.getSelectedItem().toString();
+        if(nombre.isEmpty()||apellidos.isEmpty()||correo.isEmpty()||fechaNacimiento.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
+        }
         JOptionPane.showMessageDialog(this,this.myP.getMyEstadio().registrarAficionado(cedula ,nombre, apellidos, correo, telefono, fechaNacimiento, tipoAficionado) );
     }//GEN-LAST:event_registrarActionPerformed
 

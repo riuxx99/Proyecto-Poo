@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author IAN
  */
-public class Aficionado extends Usuario{
+public class Aficionado{
     
     //Declaramos los atributos de la clase Aficionado
     private int cedula;
@@ -22,8 +22,8 @@ public class Aficionado extends Usuario{
     
     //Realizamos el constructor
     
-    public Aficionado(int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado, String username, String clave) {
-        super(username, clave);
+    public Aficionado(int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado) {
+        
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -94,7 +94,7 @@ public class Aficionado extends Usuario{
 
     @Override
     public String toString() {
-        return super.toString()+"Aficionado: \n cedula=" + cedula + "\n nombre=" + nombre + "\n apellido=" + apellido + "\n correo=" + correo + "\n telefono=" + telefono + "\n Fecha de Nacimiento=" + fechaNacimiento + 
+        return "Aficionado: \n cedula=" + cedula + "\n nombre=" + nombre + "\n apellido=" + apellido + "\n correo=" + correo + "\n telefono=" + telefono + "\n Fecha de Nacimiento=" + fechaNacimiento + 
                 "\n Tipo de Aficionado=" + tipoAficionado + "\n Planes comprados= " + myPlanesComprados;
     }
     

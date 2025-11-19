@@ -34,11 +34,12 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        venderBoletas = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        logIn = new javax.swing.JButton();
+        registrarAficionado = new javax.swing.JButton();
         cmdRegistrarPartido = new javax.swing.JButton();
         administrarTorneos = new javax.swing.JButton();
+        buscarPartidosEquipo = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -61,14 +62,14 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 48)); // NOI18N
         jLabel1.setText("Estadio General Santander");
 
-        jButton1.setText("Ver Todos Los Partidos");
+        venderBoletas.setText("Vender Boletas");
 
         jButton2.setText("Vender Plan");
 
-        logIn.setText("Registrar Aficionado");
-        logIn.addActionListener(new java.awt.event.ActionListener() {
+        registrarAficionado.setText("Registrar Aficionado");
+        registrarAficionado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logInActionPerformed(evt);
+                registrarAficionadoActionPerformed(evt);
             }
         });
 
@@ -86,6 +87,13 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
+        buscarPartidosEquipo.setText("Buscar Partidos Equipo");
+        buscarPartidosEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarPartidosEquipoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -94,12 +102,15 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(administrarTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(venderBoletas, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)
+                        .addComponent(buscarPartidosEquipo))
                     .addComponent(cmdRegistrarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logIn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
+                        .addComponent(registrarAficionado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -108,11 +119,13 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(venderBoletas)
+                    .addComponent(buscarPartidosEquipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(logIn)
+                .addComponent(registrarAficionado)
                 .addGap(18, 18, 18)
                 .addComponent(cmdRegistrarPartido)
                 .addGap(18, 18, 18)
@@ -147,10 +160,10 @@ public class FormPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInActionPerformed
+    private void registrarAficionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarAficionadoActionPerformed
         FormRegistrarAficionado myFRA = new FormRegistrarAficionado(this);
         myFRA.setVisible(true);
-    }//GEN-LAST:event_logInActionPerformed
+    }//GEN-LAST:event_registrarAficionadoActionPerformed
 
     private void cmdRegistrarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegistrarPartidoActionPerformed
         // TODO add your handling code here:
@@ -162,6 +175,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         FormAdministrarTorneo myFFT = new FormAdministrarTorneo(this);
         myFFT.setVisible(true);
     }//GEN-LAST:event_administrarTorneosActionPerformed
+
+    private void buscarPartidosEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPartidosEquipoActionPerformed
+        FormSust2 fS2 = new FormSust2(this);
+        fS2.setVisible(true);
+    }//GEN-LAST:event_buscarPartidosEquipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,13 +218,14 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton administrarTorneos;
+    private javax.swing.JButton buscarPartidosEquipo;
     private javax.swing.JButton cmdRegistrarPartido;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton logIn;
+    private javax.swing.JButton registrarAficionado;
+    private javax.swing.JButton venderBoletas;
     // End of variables declaration//GEN-END:variables
 }

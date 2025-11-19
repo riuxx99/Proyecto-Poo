@@ -233,8 +233,13 @@ public class FormRegistrarPartido extends javax.swing.JFrame {
         String hora = sdf.format(h);
         String equipoLocal = this.txtEquipoLocal.getText();
         String equipoVisitante = this.txtEquipoVisitante.getText();
-        String result = this.myP.getMyEstadio().registrarPartido(torneo,fecha, hora, equipoLocal, equipoVisitante);
-        JOptionPane.showMessageDialog(this, result);
+        if(torneo.isEmpty()||fecha.isEmpty()|| hora.isEmpty()|| equipoLocal.isEmpty()|| equipoVisitante.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese todos los datos");
+        }else{
+           String result = this.myP.getMyEstadio().registrarPartido(torneo,fecha, hora, equipoLocal, equipoVisitante);
+           JOptionPane.showMessageDialog(this, result);
+        }
+        
     }//GEN-LAST:event_cmdRegistrarActionPerformed
 
     /**

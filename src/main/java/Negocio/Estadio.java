@@ -3,10 +3,9 @@
  */
 
 package Negocio;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 /**
  *
  * @author IAN
@@ -59,7 +58,7 @@ public class Estadio {
         if(this.validarCedula(cedula) != null){
             return "Ya existe un usuario con esa cedula, intente de nuevo";
         }
-        //this.myUsuarios.add(new Aficionado(cedula, nombre, apellido, correo, telefono, fechaNacimiento, tipoAficionado));
+        this.myAficionados.add(new Aficionado(cedula, nombre, apellido, correo, telefono, fechaNacimiento, tipoAficionado));
         cad = "USUARIO REGISTRADO EXITOSAMENTE";
         return cad;
     }
@@ -148,5 +147,17 @@ public class Estadio {
             valor *=0.80;
         }
         return valor;
+    }
+    
+    //Programacion partidos de un equipo
+    public String programacionPartidosEquipo(String equipo){
+        String cad="";
+        for(Torneo t: this.myTorneos){
+            if(!t.getMyPartidos().isEmpty() && t.cantidadPartidos(equipo)>0){
+                cad += "Nombre Torneo: "+t.getNombre()+"\nFecha Partido\tHora\tEquipo Local\tEquipo Visitante\tEstado";
+                cad+= t.buscarPartidosEquipo(equipo)+"\n\n";
+            }
+        }
+        return cad;
     }
 }

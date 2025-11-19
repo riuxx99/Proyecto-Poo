@@ -69,8 +69,28 @@ public class Torneo {
     public void añadirPartido(Partido p){
         this.myPartidos.add(p);
     }
-    
-    
+    //ver si un equipo pertenece a un partido
+    public String buscarPartidosEquipo(String equipo){
+        String cad = "";
+        equipo = equipo.toLowerCase();
+        for(Partido p:this.myPartidos){
+            if(p.getEquipoLocal().toLowerCase().equals(equipo)||p.getEquipoVisitante().toLowerCase().equals(equipo)){
+                cad += p.toString();
+            }
+        }
+        return cad;
+    }
+    //ver si un equipo tiene partidos para jugar
+    public int cantidadPartidos(String equipo){
+        int cant = 0;
+        equipo = equipo.toLowerCase();
+        for(Partido p:this.myPartidos){
+            if(p.getEquipoLocal().toLowerCase().equals(equipo)||p.getEquipoVisitante().toLowerCase().equals(equipo)){
+                cant +=1;
+            }
+        }
+        return cant;
+    }
     @Override
     public String toString() {
         return "Torneo: \n nombre=" + nombre + "\n Fecha de Inicio=" + fechaInicio + "\n Fecha de Finalizacion=" + fechaFin + "\n Partidos=" + myPartidos;

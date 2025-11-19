@@ -75,7 +75,7 @@ public class Partido {
 
     @Override
     public String toString() {
-        return "Partido: \n fecha=" + fecha + "\n hora=" + hora + "\n equipoLocal=" + equipoLocal + "\n equipoVisitante=" + equipoVisitante + "\n estado=" + estado;
+        return "\n" + this.getFecha() + "\t" + hora + "\t" + equipoLocal + "\t" + equipoVisitante + "\t\t" + estado;
     }
     
 }
