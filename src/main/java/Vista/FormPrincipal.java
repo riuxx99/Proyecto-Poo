@@ -40,6 +40,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         cmdRegistrarPartido = new javax.swing.JButton();
         administrarTorneos = new javax.swing.JButton();
         buscarPartidosEquipo = new javax.swing.JButton();
+        cmdCancelarPartido = new javax.swing.JButton();
+        cmdReembolso = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -94,6 +96,20 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
+        cmdCancelarPartido.setText("Cambiar Estado Partidos");
+        cmdCancelarPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCancelarPartidoActionPerformed(evt);
+            }
+        });
+
+        cmdReembolso.setText("Reembolso por Cancelacion");
+        cmdReembolso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdReembolsoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -102,30 +118,39 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(administrarTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(venderBoletas, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98)
-                        .addComponent(buscarPartidosEquipo))
-                    .addComponent(cmdRegistrarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(registrarAficionado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(venderBoletas, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(registrarAficionado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+                            .addComponent(cmdRegistrarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(98, 98, 98)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmdReembolso)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(buscarPartidosEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmdCancelarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(venderBoletas)
                     .addComponent(buscarPartidosEquipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(cmdCancelarPartido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(registrarAficionado)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarAficionado)
+                    .addComponent(cmdReembolso))
                 .addGap(18, 18, 18)
                 .addComponent(cmdRegistrarPartido)
                 .addGap(18, 18, 18)
@@ -181,6 +206,18 @@ public class FormPrincipal extends javax.swing.JFrame {
         fS2.setVisible(true);
     }//GEN-LAST:event_buscarPartidosEquipoActionPerformed
 
+    private void cmdCancelarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelarPartidoActionPerformed
+        // TODO add your handling code here:
+        FormCancelarPartido myFCP = new FormCancelarPartido(this);
+        myFCP.setVisible(true);
+    }//GEN-LAST:event_cmdCancelarPartidoActionPerformed
+
+    private void cmdReembolsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdReembolsoActionPerformed
+        // TODO add your handling code here:
+        FormReembolso myFR = new FormReembolso(this);
+        myFR.setVisible(true);
+    }//GEN-LAST:event_cmdReembolsoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -219,6 +256,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton administrarTorneos;
     private javax.swing.JButton buscarPartidosEquipo;
+    private javax.swing.JButton cmdCancelarPartido;
+    private javax.swing.JButton cmdReembolso;
     private javax.swing.JButton cmdRegistrarPartido;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
