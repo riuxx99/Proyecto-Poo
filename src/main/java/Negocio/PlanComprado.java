@@ -10,13 +10,11 @@ package Negocio;
  */
 public class PlanComprado {
     //Defino los atributos de la clase
-    
-    private Aficionado myAficionado;
-    private Plan myPlan;
+    private String nombrePlan;
     private String fechaCompra;
     private String torneo;
     private String fechaExpiracion;
-    private double precioVenta;
+    private double precio;
     
     //Realizo el constructor
 
@@ -24,15 +22,25 @@ public class PlanComprado {
         
     }
 
-    public PlanComprado(String fechaCompra, String torneo, String fechaExpiracion, float precioVenta) {
+    public PlanComprado(String nombrePlan,String fechaCompra, String torneo, String fechaExpiracion, double precio) {
+        this.nombrePlan = nombrePlan;
         this.fechaCompra = fechaCompra;
         this.torneo = torneo;
         this.fechaExpiracion = fechaExpiracion;
-        this.precioVenta = precioVenta;
+        this.precio = precio;
     }
     
     //Defino los getters, setters y toString
 
+    public String getNombrePlan() {
+        return nombrePlan;
+    }
+
+    public void setNombrePlan(String nombrePlan) {
+        this.nombrePlan = nombrePlan;
+    }
+
+    
     public String getFechaCompra() {
         return fechaCompra;
     }
@@ -57,18 +65,19 @@ public class PlanComprado {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public double getPrecioVenta() {
-        return precioVenta;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setPrecioVenta(float precioVenta) {
-        this.precioVenta = precioVenta;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
     @Override
     public String toString() {
-        return "PlanComprado: \n Aficionado=" + myAficionado + "\n Plan=" + myPlan + "\n fechaCompra=" + fechaCompra + "\n torneo=" + torneo + "\n fechaExpiracion=" + fechaExpiracion + "\n precioVenta=" + precioVenta;
+        return "PlanComprado{" + "nombrePlan=" + nombrePlan + ", fechaCompra=" + fechaCompra + ", torneo=" + torneo + ", fechaExpiracion=" + fechaExpiracion + ", precio=" + precio + '}';
     }
-    
+
+   
     
 }

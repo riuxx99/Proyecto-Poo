@@ -35,7 +35,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         venderBoletas = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        venderPlan = new javax.swing.JButton();
         registrarAficionado = new javax.swing.JButton();
         cmdRegistrarPartido = new javax.swing.JButton();
         administrarTorneos = new javax.swing.JButton();
@@ -66,7 +66,12 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         venderBoletas.setText("Vender Boletas");
 
-        jButton2.setText("Vender Plan");
+        venderPlan.setText("Vender Plan");
+        venderPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                venderPlanActionPerformed(evt);
+            }
+        });
 
         registrarAficionado.setText("Registrar Aficionado");
         registrarAficionado.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +128,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(venderBoletas, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(venderPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(registrarAficionado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
                             .addComponent(cmdRegistrarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(98, 98, 98)
@@ -145,7 +150,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                     .addComponent(buscarPartidosEquipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(venderPlan)
                     .addComponent(cmdCancelarPartido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -218,6 +223,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         myFR.setVisible(true);
     }//GEN-LAST:event_cmdReembolsoActionPerformed
 
+    private void venderPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderPlanActionPerformed
+        FormVentaPlan myFVP = new FormVentaPlan(this);
+        myFVP.setVisible(true);
+    }//GEN-LAST:event_venderPlanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -259,12 +269,12 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton cmdCancelarPartido;
     private javax.swing.JButton cmdReembolso;
     private javax.swing.JButton cmdRegistrarPartido;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton registrarAficionado;
     private javax.swing.JButton venderBoletas;
+    private javax.swing.JButton venderPlan;
     // End of variables declaration//GEN-END:variables
 }

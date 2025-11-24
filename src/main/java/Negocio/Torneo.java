@@ -91,6 +91,18 @@ public class Torneo {
         }
         return cant;
     }
+    //Metodo para verificar cuantos partidos estan activos en un torneo para poder vender los planes al precio correcto
+    public int verificarPartidos(){
+        int Contador = 0;
+        Partido p = null;
+        for(Partido t:myPartidos){
+            if(t.getEstado().equalsIgnoreCase("Activo")){
+                p = t;
+                Contador++;
+            }
+        }
+        return Contador;
+    }
     @Override
     public String toString() {
         return "Torneo: \n nombre=" + nombre + "\n Fecha de Inicio=" + fechaInicio + "\n Fecha de Finalizacion=" + fechaFin + "\n Partidos=" + myPartidos;

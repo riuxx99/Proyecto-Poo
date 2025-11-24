@@ -3,7 +3,7 @@
  */
 
 package Negocio;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -51,11 +51,11 @@ public class Estadio {
         return af;
     }
     
-    //RF 1 permite registrar usuarios de clase aficionado
-    public String registrarAficionado(int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado){
-        String cad;
-        
-        if(this.validarCedula(cedula) != null){
+        //RF 1 permite registrar usuarios de clase aficionado
+        public String registrarAficionado(int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado){
+            String cad;
+
+            if(this.validarCedula(cedula) != null){
             return "Ya existe un usuario con esa cedula, intente de nuevo";
         }
         this.myAficionados.add(new Aficionado(cedula, nombre, apellido, correo, telefono, fechaNacimiento, tipoAficionado));
@@ -67,6 +67,7 @@ public class Estadio {
     public String registrarPartido(String torneo,String fecha, String hora, String equipoLocal, String equipoVisitante){
         String cad;
         Torneo t = buscarTorneo(torneo);
+        int id =0 ;
         if(t.getFechaInicio()==null){
             return "EL TORNEO NO TIENE FECHA DE INICIO...";
         }
@@ -80,7 +81,12 @@ public class Estadio {
             return"YA HAY UN PARTIDO PARA LA FECHA INGRESADA...";
         }
         
-        t.añadirPartido(new Partido(fecha,hora,equipoLocal,equipoVisitante));
+        if(t.getMyPartidos().isEmpty()){
+            id = 0;
+        }else{
+            id = t.getMyPartidos().size()+1;
+        }
+        t.añadirPartido(new Partido(id,fecha,hora,equipoLocal,equipoVisitante));
         cad="PARTIDO REGISTRADO CON EXITO";
         return cad;
     }
@@ -133,13 +139,25 @@ public class Estadio {
     public String venderPlan(String torneo, int cedula,String planAComprar){
         Torneo t = this.buscarTorneo(torneo);
         Aficionado a = this.validarCedula(cedula);
-        double valorPlan = this.calcularValorPlan(planAComprar, torneo);
-            
-        return null;
+        //validaciones
+        if(t.getFechaFin() == null){
+            return "No se puede vender un plan: el torneo no tiene fecha de fin registrada.";
+        }
+        if(a==null) return "No hay un aficionado con esta cedula";
+        if(t.getMyPartidos().isEmpty()) return "No se puede vender un plan: el torneo aún no tiene partidos programados.";
+ 
+        double precio = this.calcularValorPlan(planAComprar,torneo);
+        String fechaCompra = LocalDate.now().toString();
+        
+        String fechaExpiracion = t.getFechaFin();
+        PlanComprado plan = new PlanComprado(planAComprar, fechaCompra,  torneo,  fechaExpiracion, precio);
+        a.añadirPlan(plan);
+        return "PLAN " + planAComprar + " COMPRADO EXITOSAMENTE POR $" + precio + "\nFECHA DE EXPIRACION: "+ fechaExpiracion;
+
     }
     private double calcularValorPlan(String plan,String torneo){
         Torneo t = this.buscarTorneo(torneo);
-        double valor=t.getValorBoleta()*t.getMyPartidos().size();
+        double valor=t.getValorBoleta()*t.verificarPartidos();
         if(t.getNombre().equals("Liga BetPlay Dimayor primera A")||t.getNombre().equals("La primera B")){
           if(plan.equals("Basico")){
                 valor *=0.90;
@@ -171,7 +189,7 @@ public class Estadio {
         String cad="";
         for(Torneo t: this.myTorneos){
             if(!t.getMyPartidos().isEmpty() && t.cantidadPartidos(equipo)>0){
-                cad += "Nombre Torneo: "+t.getNombre()+"\nFecha Partido\tHora\tEquipo Local\tEquipo Visitante\tEstado";
+                cad += "Nombre Torneo: "+t.getNombre()+"\nId\tFecha Partido\tHora\tEquipo Local\tEquipo Visitante\tEstado";
                 cad+= t.buscarPartidosEquipo(equipo)+"\n\n";
             }
         }

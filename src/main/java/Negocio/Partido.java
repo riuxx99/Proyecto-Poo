@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Partido {
     
     //Defino los atributos de la clase
+    private int id;
     private String fecha;
     private String hora;
     private String equipoLocal;
@@ -22,15 +23,22 @@ public class Partido {
         
     }
 
-    public Partido(String fecha, String hora, String equipoLocal, String equipoVisitante) {
+    public Partido(int id,String fecha, String hora, String equipoLocal, String equipoVisitante) {
+        this.id= id;
         this.fecha = fecha;
         this.hora = hora;
         this.equipoLocal = equipoLocal;
         this.equipoVisitante = equipoVisitante;
         this.estado = "Activo";
     }
-    
-    //Defino los getters, setters y toString
+    //Setters y getters de la clase
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFecha() {
         return fecha;
@@ -75,7 +83,7 @@ public class Partido {
 
     @Override
     public String toString() {
-        return "\n" + this.getFecha() + "\t" + hora + "\t" + equipoLocal + "\t" + equipoVisitante + "\t\t" + estado;
+        return "\n" +this.getId() +"\t"+ fecha + "\t" + hora + "\t" + equipoLocal + "\t" + equipoVisitante + "\t\t" + estado;
     }
     
 }

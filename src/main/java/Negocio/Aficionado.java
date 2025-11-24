@@ -91,6 +91,10 @@ public class Aficionado{
     public void setTipoAficionado(String tipoAficionado) {
         this.tipoAficionado = tipoAficionado;
     }
+    //Añadir Plan Comprado a aficionado
+    public void añadirPlan(PlanComprado plan){
+        this.myPlanesComprados.add(plan);
+    }
 
     @Override
     public String toString() {

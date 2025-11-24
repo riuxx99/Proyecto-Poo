@@ -27,7 +27,7 @@ public class VentanaEstadio extends JFrame{
         
         // Inicializamos lista de partidos
         partidos = new ArrayList<>();
-        partidos.add(new Partido("15/11/2025", "19:00", "Millonarios", "SantaFe"));
+        //partidos.add(new Partido("15/11/2025", "19:00", "Millonarios", "SantaFe"));
         
         // Panel contenedor con scroll
         panelLista = new JPanel();
