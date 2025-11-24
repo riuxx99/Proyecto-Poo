@@ -4,6 +4,7 @@
 
 package Negocio;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
@@ -16,17 +17,17 @@ public class Estadio {
     private ArrayList<Plan> myPlanes;
     private Torneo[] myTorneos;
     private ArrayList<Aficionado> myAficionados;
-   
+    private ArrayList<Boleta> myBoletas;
     
     //Defino el constructor
     
     public Estadio(){
         //Crear Tribunas
         this.myTribunas = new Tribuna[4];
-        myTribunas[0] = new Tribuna("1","Norte",2000);
-        myTribunas[1]= new Tribuna("2","Sur",2000);
-        myTribunas[2] = new Tribuna("3","Oriente",2000);
-        myTribunas[3] = new Tribuna("4","Occidente",2000);
+        myTribunas[0] = new Tribuna(1,"Norte");
+        myTribunas[1]= new Tribuna(2,"Sur");
+        myTribunas[2] = new Tribuna(3,"Oriente");
+        myTribunas[3] = new Tribuna(4,"Occidente");
         //Crear torneos
         this.myTorneos = new Torneo[4];
         this.myTorneos[0] =new Torneo("Liga BetPlay Dimayor primera A");
@@ -152,7 +153,7 @@ public class Estadio {
         String fechaExpiracion = t.getFechaFin();
         PlanComprado plan = new PlanComprado(planAComprar, fechaCompra,  torneo,  fechaExpiracion, precio);
         a.añadirPlan(plan);
-        return "PLAN " + planAComprar + " COMPRADO EXITOSAMENTE POR $" + precio + "\nFECHA DE EXPIRACION: "+ fechaExpiracion;
+        return "Plan " + planAComprar + " comprado por $" + precio + "\nFecha de Expiracion: "+ fechaExpiracion;
 
     }
     private double calcularValorPlan(String plan,String torneo){
@@ -184,6 +185,94 @@ public class Estadio {
         return valor;
     }
     
+        //Vender Boleta
+    public String ventaBoleta(String torneo,int cedula,int idPartido, ArrayList<String> puestos){
+        Aficionado a = this.validarCedula(cedula);
+        if(a==null){
+            return "No se ha encontrado un aficionado con esta cedula";
+        }
+        Torneo t = this.buscarTorneo(torneo);
+        //Obtener datos del puesto
+        Puesto p = null;
+        double precioTotal = 0F;
+        double precioBoleta = 0F;
+        int idBoleta = 0;
+        for(String myP :puestos){
+            p= buscarPuesto(myP);
+            precioBoleta = t.getValorBoleta()+this.calcularRecargo(torneo,p.getIdTribuna(),p.getNivel(),t.getValorBoleta());
+            precioTotal += precioBoleta;
+            if(!myBoletas.isEmpty()){
+                idBoleta +=1 ;
+            }
+            myBoletas.add(new Boleta(a,t.buscarPartido(idPartido),idBoleta,LocalDate.now().toString(),LocalTime.now().withNano(0).toString(),precioBoleta));
+        }
+        if (puestos.size() >=4) {
+           precioTotal *= 0.10;
+        }
+        return "Boletas vendidas exitosamente... Total A Pagar"+ precioTotal;
+    }
+    public Puesto buscarPuesto(String myP){
+        Puesto p = null;
+        for(Tribuna t:myTribunas){
+            p = t.busquedaPuesto(myP);
+        }
+        return p;
+    }
+    //Calcular recargo boleta
+    public double calcularRecargo(String torneo, int idTribuna, int nivel, double valorBoleta){
+    double recargo = 0;
+
+    // Liga BetPlay Dimayor primera A
+    if(torneo.equals("Liga BetPlay Dimayor primera A")){
+        if(idTribuna == 1 || idTribuna == 2){
+            recargo = valorBoleta * 0.10;
+        }else if(idTribuna == 3){
+            if(nivel == 1 || nivel == 2) recargo = valorBoleta * 0.25;
+            else if(nivel == 3) recargo = valorBoleta * 0.15;
+            else if(nivel == 4) recargo = valorBoleta * 0.10;
+        }else if(idTribuna == 4){
+            if(nivel == 1) recargo = valorBoleta * 0.35;
+            else if(nivel == 2 || nivel == 3) recargo = valorBoleta * 0.25;
+            else if(nivel == 4) recargo = valorBoleta * 0.10;
+        }
+    }
+
+    // La primera B
+    else if(torneo.equals("La primera B")){
+        if(idTribuna == 1 || idTribuna == 2 || idTribuna == 3){
+            recargo = -(valorBoleta * 0.20);
+        }else if(idTribuna == 4){
+            recargo = -(valorBoleta * 0.10);
+        }
+    }
+
+    // CONMEBOL Libertadores
+    else if(torneo.equals("CONMEBOL Libertadores")){
+        if(idTribuna == 1 || idTribuna == 2){
+            recargo = valorBoleta * 0.20;
+        }else if(idTribuna == 3){
+            if(nivel == 1) recargo = valorBoleta * 0.35;
+            else recargo = valorBoleta * 0.45;
+        }else if(idTribuna == 4){
+            recargo = valorBoleta * 0.55;
+        }
+    }
+
+    // CONMEBOL Sudamericana
+    else if(torneo.equals("CONMEBOL Sudamericana")){
+        if(idTribuna == 1 || idTribuna == 2){
+            recargo = valorBoleta * 0.20;
+        }else if(idTribuna == 3){
+            if(nivel == 1) recargo = valorBoleta * 0.35;
+            else recargo = valorBoleta * 0.45;
+        }else if(idTribuna == 4){
+            recargo = valorBoleta * 0.55;
+        }
+    }
+
+    return recargo;
+}
+
     //Programacion partidos de un equipo
     public String programacionPartidosEquipo(String equipo){
         String cad="";

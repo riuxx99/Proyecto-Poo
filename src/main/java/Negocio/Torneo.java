@@ -103,6 +103,14 @@ public class Torneo {
         }
         return Contador;
     }
+    public Partido buscarPartido(int idPartido){
+        for(Partido p: myPartidos){
+            if(p.getId()==idPartido){
+                return p;
+            }
+        }
+        return null;
+    }
     @Override
     public String toString() {
         return "Torneo: \n nombre=" + nombre + "\n Fecha de Inicio=" + fechaInicio + "\n Fecha de Finalizacion=" + fechaFin + "\n Partidos=" + myPartidos;

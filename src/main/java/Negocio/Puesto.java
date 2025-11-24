@@ -12,7 +12,7 @@ public class Puesto {
     
     //Defino los atributos de la clase
     private int numero;
-    private String idTribuna;
+    private int idTribuna;
     private int nivel;
     private String numeroCompuesto;
     
@@ -21,11 +21,11 @@ public class Puesto {
         
     }
 
-    public Puesto(int numero, String idTribuna, int nivel) {
+    public Puesto(int numero, int idTribuna, int nivel) {
         this.numero = numero;
         this.idTribuna = idTribuna;
         this.nivel = nivel;
-        this.numeroCompuesto = idTribuna+"-"+numero;
+        this.numeroCompuesto = String.valueOf(idTribuna)+"-"+numero;
     }
     
     //Defino los getters, setters y toString
@@ -38,11 +38,11 @@ public class Puesto {
         this.numero = numero;
     }
 
-    public String getIdTribuna() {
+    public int getIdTribuna() {
         return idTribuna;
     }
 
-    public void setIdTribuna(String idTribuna) {
+    public void setIdTribuna(int idTribuna) {
         this.idTribuna = idTribuna;
     }
 

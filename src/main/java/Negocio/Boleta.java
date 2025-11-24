@@ -12,18 +12,20 @@ public class Boleta {
     //Definimos los atributos de la clase
     private Aficionado myAficionado;
     private Partido myPartido;
-    private Puesto myPuesto;
+    private String numPuesto; 
     private int numeroBoleta;
     private String fechaVenta;
     private String horaVenta;
-    private float precioBoleta;
+    private double precioBoleta;
     
     //Realizamos el constructor
     public Boleta(){
         
     }
 
-    public Boleta(int numeroBoleta, String fechaVenta, String horaVenta, float precioBoleta) {
+    public Boleta(Aficionado aficionado,Partido partido,int numeroBoleta, String fechaVenta, String horaVenta, double precioBoleta) {
+        this.myAficionado = aficionado;
+        this.myPartido = partido;
         this.numeroBoleta = numeroBoleta;
         this.fechaVenta = fechaVenta;
         this.horaVenta = horaVenta;
@@ -56,17 +58,17 @@ public class Boleta {
         this.horaVenta = horaVenta;
     }
 
-    public float getPrecioBoleta() {
+    public double getPrecioBoleta() {
         return precioBoleta;
     }
 
-    public void setPrecioBoleta(float precioBoleta) {
+    public void setPrecioBoleta(double precioBoleta) {
         this.precioBoleta = precioBoleta;
     }
 
     @Override
     public String toString() {
-        return "Boleta: \n Aficionado=" + myAficionado + "\n Partido=" + myPartido + "\n Puesto=" + myPuesto + "\n Numero de Boleta=" + numeroBoleta + "\n Fecha de Venta=" + fechaVenta + 
+        return "Boleta: \n Aficionado=" + myAficionado + "\n Partido=" + myPartido + "\n Puesto=" + numPuesto + "\n Numero de Boleta=" + numeroBoleta + "\n Fecha de Venta=" + fechaVenta + 
                 "\n Hora de Venta=" + horaVenta + "\n Precio de la Boleta=" + precioBoleta;
     }
     

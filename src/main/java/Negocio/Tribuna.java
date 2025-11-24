@@ -11,9 +11,8 @@ package Negocio;
 public class Tribuna {
     
     //Defino los atributos de la clase
-    private String id;
+    private int id;
     private String nombre;
-    private float precioBase;
     private Puesto myPuestos[];
     
     //Realizo el constructor
@@ -21,10 +20,9 @@ public class Tribuna {
         
     }
     //Constructor con parametros
-    public Tribuna(String id, String nombre, float precioBase) {
+    public Tribuna(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.precioBase = precioBase;
         this.myPuestos = new Puesto[80];
         
         for(int i=0; i<80;i++){
@@ -34,11 +32,11 @@ public class Tribuna {
     
     //Defino los getters, setters y toString
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,14 +46,6 @@ public class Tribuna {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public float getPrecioBase() {
-        return precioBase;
-    }
-
-    public void setPrecioBase(float precioBase) {
-        this.precioBase = precioBase;
     }
 
     public Puesto[] getMyPuestos() {
@@ -76,10 +66,18 @@ public class Tribuna {
         }
         return nivel;
     }
-
+    //Busqueda de puesto
+    public Puesto busquedaPuesto(String puesto){
+        for(Puesto p: myPuestos){
+            if(p.getNumeroCompuesto().equals(puesto)){
+                return p;
+            }
+        }
+        return null;
+    }
     @Override
     public String toString() {
-        return "Tribuna: \n id=" + id + "\n nombre=" + nombre + "\n precioBase=" + precioBase;
+        return "Tribuna: \n id=" + id + "\n nombre=" + nombre;
     }
     
 }
