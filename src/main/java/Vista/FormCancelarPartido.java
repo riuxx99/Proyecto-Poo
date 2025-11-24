@@ -16,9 +16,9 @@ FormPrincipal myP;
     public FormCancelarPartido(FormPrincipal p) {
         initComponents();
         this.myP = p;
-        this.cmbPartidos.addItem("Básico");
-            this.cmbPartidos.addItem("Premium");
-            this.cmbPartidos.addItem("VIP");
+        this.cmbPartidos.addItem("1");
+        this.cmbPartidos.addItem("2");
+        this.cmbPartidos.addItem("3");
     }
 
     /**
@@ -141,13 +141,13 @@ FormPrincipal myP;
 
         // Dependiendo de la selección, agregamos nuevos valores
         if (seleccion.equals("Liga BetPlay Dimayor primera A")) {
-            this.cmbPartidos.addItem("Básico");
-            this.cmbPartidos.addItem("Premium");
-            this.cmbPartidos.addItem("VIP");
+            this.cmbPartidos.addItem("1");
+            this.cmbPartidos.addItem("2");
+            this.cmbPartidos.addItem("3");
 
         } else if (seleccion.equals("La primera B")) {
-            this.cmbPartidos.addItem("Básico");
-            this.cmbPartidos.addItem("Premium");
+            this.cmbPartidos.addItem("1");
+            this.cmbPartidos.addItem("2");
 
 
         } 

@@ -36,6 +36,8 @@ public class Estadio {
         this.myTorneos[3] =new Torneo("CONMEBOL Sudamericana");
         this.myPlanes = new ArrayList<Plan> ();
         this.myAficionados= new ArrayList<Aficionado> ();
+        this.myBoletas = new ArrayList<>();
+        
     }
     
     
@@ -205,6 +207,7 @@ public class Estadio {
                 idBoleta +=1 ;
             }
             myBoletas.add(new Boleta(a,t.buscarPartido(idPartido),idBoleta,LocalDate.now().toString(),LocalTime.now().withNano(0).toString(),precioBoleta));
+            t.añadirPuestoVendidoPartido(t.buscarPartido(idPartido),p.getNumeroCompuesto());
         }
         if (puestos.size() >=4) {
            precioTotal *= 0.10;
@@ -282,6 +285,28 @@ public class Estadio {
                 cad+= t.buscarPartidosEquipo(equipo)+"\n\n";
             }
         }
+        return cad;
+    }
+    //Mostrar Partidos con mas ventas para un torneo
+    public String mostrarPartidosConMasVenta(String torneo){
+        String cad = "";
+        Torneo t = this.buscarTorneo(torneo);
+        if(t.getMyPartidos().isEmpty()){
+            return "EL TORNEO NO TIENE PARTIDOS PROGRAMADOS";
+        }
+        cad += "Nombre Torneo: "+t.getNombre()+"\nId\tFecha Partido\tHora\tEquipo Local\tEquipo Visitante\tNumero Boletas Vendidas";
+        cad += t.buscarPartidosConMasVentas();
+        return cad;
+    }
+    //Partidos Disponibles
+    public String programacionPartidosTorneo(String torneo){
+        Torneo t = this.buscarTorneo(torneo);
+        String cad="";
+        if(t.getMyPartidos().isEmpty()){
+            return "NO HAY PARTIDOS PROGRAMADOS PARA ESTE TORNEO";
+        }
+        cad += "Nombre Torneo: "+t.getNombre()+"\nId\tFecha Partido\tHora\tEquipo Local\tEquipo Visitante\tEstado";  
+        cad += t.listarPartidosTorneo();
         return cad;
     }
 }

@@ -42,6 +42,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         buscarPartidosEquipo = new javax.swing.JButton();
         cmdCancelarPartido = new javax.swing.JButton();
         cmdReembolso = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -65,6 +66,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Estadio General Santander");
 
         venderBoletas.setText("Vender Boletas");
+        venderBoletas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                venderBoletasActionPerformed(evt);
+            }
+        });
 
         venderPlan.setText("Vender Plan");
         venderPlan.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +121,13 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Mostrar Partido Con Mas Ventas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -136,7 +149,8 @@ public class FormPrincipal extends javax.swing.JFrame {
                             .addComponent(cmdReembolso)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(buscarPartidosEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmdCancelarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(cmdCancelarPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton1))))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -157,10 +171,12 @@ public class FormPrincipal extends javax.swing.JFrame {
                     .addComponent(registrarAficionado)
                     .addComponent(cmdReembolso))
                 .addGap(18, 18, 18)
-                .addComponent(cmdRegistrarPartido)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmdRegistrarPartido)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(administrarTorneos)
-                .addGap(56, 56, 56))
+                .addGap(100, 100, 100))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +200,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -228,6 +244,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         myFVP.setVisible(true);
     }//GEN-LAST:event_venderPlanActionPerformed
 
+    private void venderBoletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderBoletasActionPerformed
+        FormVenderBoletas myFVB = new FormVenderBoletas(this);
+        myFVB.setVisible(true);
+    }//GEN-LAST:event_venderBoletasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FormSustentacion3 fS3 = new FormSustentacion3(this);
+        fS3.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -269,6 +295,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton cmdCancelarPartido;
     private javax.swing.JButton cmdReembolso;
     private javax.swing.JButton cmdRegistrarPartido;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

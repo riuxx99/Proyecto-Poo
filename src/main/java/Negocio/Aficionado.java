@@ -21,7 +21,9 @@ public class Aficionado{
     private ArrayList<PlanComprado> myPlanesComprados;
     
     //Realizamos el constructor
-    
+    public Aficionado(){
+        
+    }
     public Aficionado(int cedula, String nombre, String apellido, String correo, int telefono, String fechaNacimiento, String tipoAficionado) {
         
         this.cedula = cedula;

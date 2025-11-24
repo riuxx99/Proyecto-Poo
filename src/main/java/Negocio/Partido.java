@@ -17,7 +17,7 @@ public class Partido {
     private String equipoLocal;
     private String equipoVisitante;
     private String estado;
-   
+    private ArrayList<String> puestosVendidos;
     //Realizo los constructors
     public Partido(){
         
@@ -30,6 +30,7 @@ public class Partido {
         this.equipoLocal = equipoLocal;
         this.equipoVisitante = equipoVisitante;
         this.estado = "Activo";
+        this.puestosVendidos = new ArrayList<>();
     }
     //Setters y getters de la clase
     public int getId() {
@@ -79,11 +80,24 @@ public class Partido {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
+    public ArrayList<String> getPuestosVendidos() {
+        return puestosVendidos;
+    }
+
+    public void setPuestosVendidos(ArrayList<String> puestosVendidos) {
+        this.puestosVendidos = puestosVendidos;
+    }
+    public void añadirVentaPuesto(String puesto){
+        this.puestosVendidos.add(puesto);
+    }
 
     @Override
     public String toString() {
         return "\n" +this.getId() +"\t"+ fecha + "\t" + hora + "\t" + equipoLocal + "\t" + equipoVisitante + "\t\t" + estado;
+    }
+    public String toStringMasVendidos() {
+        return "\n" +this.getId() +"\t"+ fecha + "\t" + hora + "\t" + equipoLocal + "\t" + equipoVisitante + "\t\t" + puestosVendidos.size();
     }
     
 }

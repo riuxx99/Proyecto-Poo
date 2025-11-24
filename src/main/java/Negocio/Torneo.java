@@ -111,6 +111,66 @@ public class Torneo {
         }
         return null;
     }
+    //Añadir Puesto Vendido Partido
+    public void añadirPuestoVendidoPartido(Partido p, String puesto){
+        p.añadirVentaPuesto(puesto);
+    }
+    //Buscar partidos con mas ventas de un torneo
+    public String buscarPartidosConMasVentas() {
+        Partido[] masVendidos = new Partido[3];
+        String cad ="";
+        //Para el más vendido
+        Partido masVendido = null;
+        for(Partido p: this.myPartidos){
+            if(masVendido == null){
+                masVendido = p;
+            }else if(p.getPuestosVendidos().size()>masVendido.getPuestosVendidos().size()){
+                masVendido = p;
+            }
+        }
+        //Para el 2do mas vendido
+        Partido segundoMasVendido = null;
+        for(Partido p: this.myPartidos){
+            if(masVendido!=null){
+                if(p.getPuestosVendidos().size()<masVendido.getPuestosVendidos().size() && segundoMasVendido == null){
+                    segundoMasVendido = p;
+                }else if(p.getPuestosVendidos().size()<masVendido.getPuestosVendidos().size()&&p.getPuestosVendidos().size()>segundoMasVendido.getPuestosVendidos().size()){
+                    segundoMasVendido = p;
+                }
+            }
+            
+        }
+        //Para el 3er mas vendido
+        Partido tercerMasVendido= null;
+        for(Partido p: this.myPartidos){
+            if(masVendido!=null && segundoMasVendido !=null){
+                if(p.getPuestosVendidos().size()<segundoMasVendido.getPuestosVendidos().size() && tercerMasVendido == null){
+                    tercerMasVendido = p;
+                }else if(p.getPuestosVendidos().size()<segundoMasVendido.getPuestosVendidos().size()&&p.getPuestosVendidos().size()>tercerMasVendido.getPuestosVendidos().size()){
+                    tercerMasVendido = p;
+                }
+            }
+            
+        }
+        for(Partido p: masVendidos){
+            cad = p.toStringMasVendidos();
+        }
+        
+        
+       return cad;
+    }
+    //Listar Partidos Activos de un torneo
+    public String listarPartidosTorneo(){
+        String cad = "";
+        
+        for(Partido p:this.myPartidos){
+            if(p.getEstado().equals("Activo")){
+                cad += p.toString();
+            }    
+            
+        }
+        return cad;
+    }
     @Override
     public String toString() {
         return "Torneo: \n nombre=" + nombre + "\n Fecha de Inicio=" + fechaInicio + "\n Fecha de Finalizacion=" + fechaFin + "\n Partidos=" + myPartidos;

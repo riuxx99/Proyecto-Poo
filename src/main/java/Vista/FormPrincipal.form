@@ -55,7 +55,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="91" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -109,6 +109,7 @@
                                   <Component id="buscarPartidosEquipo" max="32767" attributes="0"/>
                                   <Component id="cmdCancelarPartido" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -137,10 +138,13 @@
                       <Component id="cmdReembolso" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="cmdRegistrarPartido" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cmdRegistrarPartido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="administrarTorneos" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -158,6 +162,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Vender Boletas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="venderBoletasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="venderPlan">
           <Properties>
@@ -213,6 +220,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdReembolsoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mostrar Partido Con Mas Ventas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
