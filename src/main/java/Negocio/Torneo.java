@@ -16,6 +16,7 @@ public class Torneo {
     private ArrayList<Partido> myPartidos;
     private double valorBasicoBoleta;
     private int cantidadPartidos;
+    private boolean bloqueado = false;
     //Realizo el constructor
     public Torneo(){
         
@@ -75,6 +76,13 @@ public class Torneo {
     }
     public int getCantidadPartidos(){
         return this.cantidadPartidos;
+    }
+    public boolean isBloqueado() {
+        return bloqueado;
+    }
+
+    public void setBloqueado(boolean bloqueado) {
+        this.bloqueado = bloqueado;
     }
     //ver si un equipo pertenece a un partido
     public String buscarPartidosEquipo(String equipo){
