@@ -71,6 +71,9 @@ public class Estadio {
         String cad;
         Torneo t = buscarTorneo(torneo);
         int id =0 ;
+        if(t.isBloqueado() == true){
+            return "NO SE PUEDEN PROGRAMAR MAS PARTIDOS DEBIDO A QUE YA SE HAN REALIZADO LAS VENTAS DE PLANES DE ESTE TORNEO...";
+        }
         if(t.getFechaInicio()==null){
             return "EL TORNEO NO TIENE FECHA DE INICIO...";
         }
@@ -156,6 +159,7 @@ public class Estadio {
         String fechaExpiracion = t.getFechaFin();
         PlanComprado plan = new PlanComprado(planAComprar, fechaCompra,  torneo,  fechaExpiracion, precio);
         a.añadirPlan(plan);
+        t.setBloqueado(true);
         return "Plan " + planAComprar + " comprado por $" + precio + "\nFecha de Expiracion: "+ fechaExpiracion;
 
     }
