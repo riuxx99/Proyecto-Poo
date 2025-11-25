@@ -15,6 +15,7 @@ public class Torneo {
     private String fechaFin;
     private ArrayList<Partido> myPartidos;
     private double valorBasicoBoleta;
+    private int cantidadPartidos;
     //Realizo el constructor
     public Torneo(){
         
@@ -24,7 +25,7 @@ public class Torneo {
         this.nombre = nombre;
         this.fechaInicio = null;
         this.fechaFin = null;
-        this.myPartidos = new ArrayList<>();
+        this.myPartidos = new ArrayList<>(cantidadPartidos);
         this.valorBasicoBoleta = 0F;
     }
     
@@ -69,6 +70,12 @@ public class Torneo {
     public void añadirPartido(Partido p){
         this.myPartidos.add(p);
     }
+    public void setCantidadPartidos(int cantidadPartidos){
+        this.cantidadPartidos = cantidadPartidos;
+    }
+    public int getCantidadPartidos(){
+        return this.cantidadPartidos;
+    }
     //ver si un equipo pertenece a un partido
     public String buscarPartidosEquipo(String equipo){
         String cad = "";
@@ -79,17 +86,6 @@ public class Torneo {
             }
         }
         return cad;
-    }
-    //ver si un equipo tiene partidos para jugar
-    public int cantidadPartidos(String equipo){
-        int cant = 0;
-        equipo = equipo.toLowerCase();
-        for(Partido p:this.myPartidos){
-            if(p.getEquipoLocal().toLowerCase().equals(equipo)||p.getEquipoVisitante().toLowerCase().equals(equipo)){
-                cant +=1;
-            }
-        }
-        return cant;
     }
     //Metodo para verificar cuantos partidos estan activos en un torneo para poder vender los planes al precio correcto
     public int verificarPartidos(){

@@ -117,12 +117,13 @@ public class Estadio {
     }
     
     //Dar Fecha de inicio y fin a un torneo
-    public String actualizarTorneo(String torneo,String fechaInicio,String fechaFin,float valorBasico){
+    public String actualizarTorneo(String torneo,String fechaInicio,String fechaFin,float valorBasico, int cantidadPartidos){
         String cad;
         Torneo t = this.buscarTorneo(torneo);
         t.setFechaInicio(fechaInicio);
         t.setFechaFin(fechaFin);
         t.setValorBoleta(valorBasico);
+        t.setCantidadPartidos(cantidadPartidos);
         cad = "Se han actualizado los datos con exito";
         return cad;
     }
@@ -160,7 +161,7 @@ public class Estadio {
     }
     private double calcularValorPlan(String plan,String torneo){
         Torneo t = this.buscarTorneo(torneo);
-        double valor=t.getValorBoleta()*t.verificarPartidos();
+        double valor=t.getValorBoleta()*t.getCantidadPartidos();
         if(t.getNombre().equals("Liga BetPlay Dimayor primera A")||t.getNombre().equals("La primera B")){
           if(plan.equals("Basico")){
                 valor *=0.90;
