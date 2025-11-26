@@ -281,6 +281,18 @@ public class Estadio {
     return recargo;
 }
 
+    
+    public String cancelarPartido(String torneo, int id, String estado){
+        Torneo t = buscarTorneo(torneo);
+        for(Partido p:t.getMyPartidos()){
+            if(p.getId() == id){
+                p.setEstado(estado);
+                return "Se ha cancelado el partido";
+            }
+        }
+        return "No se ha encontrado el partido a cancelar";
+    }
+    
     //Programacion partidos de un equipo
     public String programacionPartidosEquipo(String equipo){
         String cad="";
