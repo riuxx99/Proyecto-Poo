@@ -16,7 +16,7 @@ public class Torneo {
     private ArrayList<Partido> myPartidos;
     private double valorBasicoBoleta;
     private int cantidadPartidos;
-    private boolean bloqueado = false;
+    private boolean bloqueado;
     //Realizo el constructor
     public Torneo(){
         
@@ -26,8 +26,9 @@ public class Torneo {
         this.nombre = nombre;
         this.fechaInicio = null;
         this.fechaFin = null;
-        this.myPartidos = new ArrayList<>(cantidadPartidos);
+        this.myPartidos = new ArrayList<>();
         this.valorBasicoBoleta = 0F;
+        this.bloqueado = false;
     }
     
     //Defino los getters, setters y toString
