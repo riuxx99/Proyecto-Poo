@@ -200,24 +200,31 @@ public class Estadio {
         }
         Torneo t = this.buscarTorneo(torneo);
         //Obtener datos del puesto
-        Puesto p = null;
+        
         double precioTotal = 0F;
         double precioBoleta = 0F;
         int idBoleta = 0;
-        String[] cadenaPartidoSeparada = partido.split("\\."); int idPartido = Integer.parseInt(cadenaPartidoSeparada[0]);
+        String[] cadenaPartidoSeparada = partido.split("\\."); 
+        int idPartido = Integer.parseInt(cadenaPartidoSeparada[0]);
         for(String myP :puestos){
-            p= buscarPuesto(myP);
+            String[] cadenaPuestoSeparada = myP.split("-"); 
+            Tribuna t = buscarTribuna(cadenaPuestoSeparada);
+            Puesto p= buscarPuesto(myP);
+            if(p == null){
+                return ("NO EXISTE EL PUESTO: " + myP);
+            }
             precioBoleta = t.getValorBoleta()+this.calcularRecargo(torneo,p.getIdTribuna(),p.getNivel(),t.getValorBoleta());
             precioTotal += precioBoleta;
-            idBoleta = myBoletas.size();
-            myBoletas.add(new Boleta(a,t.buscarPartido(idPartido),idBoleta,LocalDate.now().toString(),LocalTime.now().withNano(0).toString(),precioBoleta));
+            idBoleta = myBoletas.size()+1;
+            myBoletas.add(new Boleta(a,t.buscarPartido(idPartido),p.getNumeroCompuesto(),idBoleta,LocalDate.now().toString(),LocalTime.now().withNano(0).toString(),precioBoleta));
             t.añadirPuestoVendidoPartido(t.buscarPartido(idPartido),p.getNumeroCompuesto());
         }
         if (puestos.size() >=4) {
-           precioTotal *= 0.10;
+           precioTotal *= 0.90;
         }
         return "Boletas vendidas exitosamente... Total A Pagar"+ precioTotal;
     }
+    //
     public Puesto buscarPuesto(String myP){
         Puesto p = null;
         for(Tribuna t:myTribunas){

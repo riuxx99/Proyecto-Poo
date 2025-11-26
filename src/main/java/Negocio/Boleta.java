@@ -23,7 +23,7 @@ public class Boleta {
         
     }
 
-    public Boleta(Aficionado aficionado,Partido partido,int numeroBoleta, String fechaVenta, String horaVenta, double precioBoleta) {
+    public Boleta(Aficionado aficionado,Partido partido,String numPuesto, int numeroBoleta, String fechaVenta, String horaVenta, double precioBoleta) {
         this.myAficionado = aficionado;
         this.myPartido = partido;
         this.numeroBoleta = numeroBoleta;
