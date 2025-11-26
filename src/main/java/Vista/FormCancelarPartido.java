@@ -33,17 +33,19 @@ FormPrincipal myP;
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        cmbTorneos = new javax.swing.JComboBox<>();
+        boxTorneos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cmdCambiarEstado = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cmbPartidos = new javax.swing.JComboBox<>();
-        cmbEstado = new javax.swing.JComboBox<>();
+        boxEstado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
         cmdSolicitarCancelacion = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtIdPartido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,10 +53,10 @@ FormPrincipal myP;
 
         jLabel1.setText("Cambiar Estado Partido");
 
-        cmbTorneos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liga BetPlay Dimayor primera A", "La primera B", "CONMEBOL Libertadores", "CONMEBOL Sudamericana" }));
-        cmbTorneos.addActionListener(new java.awt.event.ActionListener() {
+        boxTorneos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liga BetPlay Dimayor primera A", "La primera B", "CONMEBOL Libertadores", "CONMEBOL Sudamericana" }));
+        boxTorneos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTorneosActionPerformed(evt);
+                boxTorneosActionPerformed(evt);
             }
         });
 
@@ -63,10 +65,15 @@ FormPrincipal myP;
         jLabel3.setText("Partidos");
 
         cmdCambiarEstado.setText("Cambiar Estado");
+        cmdCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCambiarEstadoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Estado");
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Finalizado", "Cancelado" }));
+        boxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Finalizado", "Cancelado" }));
 
         jLabel4.setText("Razon de la cancelacion:");
 
@@ -81,6 +88,8 @@ FormPrincipal myP;
             }
         });
 
+        jLabel6.setText("Id Partido");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,27 +103,26 @@ FormPrincipal myP;
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
-                            .addComponent(cmdSolicitarCancelacion))
+                            .addComponent(cmdSolicitarCancelacion)
+                            .addComponent(jLabel6))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(65, 65, 65)
-                                    .addComponent(cmbTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(15, 15, 15)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cmbPartidos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cmbEstado, 0, 207, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(cmdCambiarEstado))
+                                .addGap(72, 72, 72)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbPartidos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(boxEstado, 0, 207, Short.MAX_VALUE)
+                                    .addComponent(txtIdPartido)
+                                    .addComponent(boxTorneos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(200, 200, 200)
-                        .addComponent(jLabel1)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(cmdCambiarEstado)))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +131,7 @@ FormPrincipal myP;
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -132,19 +140,23 @@ FormPrincipal myP;
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtIdPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmdSolicitarCancelacion)))
-                .addGap(58, 58, 58)
-                .addComponent(cmdCambiarEstado)
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(cmdSolicitarCancelacion)
+                        .addGap(47, 47, 47)
+                        .addComponent(cmdCambiarEstado)
+                        .addGap(38, 38, 38))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,14 +173,14 @@ FormPrincipal myP;
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTorneosActionPerformed
-        String seleccion = this.cmbTorneos.getSelectedItem().toString();
+    private void boxTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTorneosActionPerformed
+        String seleccion = this.boxTorneos.getSelectedItem().toString();
 
         // Limpiar el segundo combo
         this.cmbPartidos.removeAllItems();
@@ -185,12 +197,20 @@ FormPrincipal myP;
 
 
         } 
-    }//GEN-LAST:event_cmbTorneosActionPerformed
+    }//GEN-LAST:event_boxTorneosActionPerformed
 
     private void cmdSolicitarCancelacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSolicitarCancelacionActionPerformed
         // TODO add your handling code here:
         this.cmdCambiarEstado.setEnabled(true);
     }//GEN-LAST:event_cmdSolicitarCancelacionActionPerformed
+
+    private void cmdCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCambiarEstadoActionPerformed
+        // TODO add your handling code here:
+        String torneo = (String) this.boxTorneos.getSelectedItem();
+        int id = Integer.parseInt(this.txtIdPartido.getText());
+        String estado = (String) this.boxEstado.getSelectedItem();
+        String resultado = this.myP.getMyEstadio().cancelarPartido(torneo, id, estado);
+    }//GEN-LAST:event_cmdCambiarEstadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,9 +218,9 @@ FormPrincipal myP;
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbEstado;
+    private javax.swing.JComboBox<String> boxEstado;
+    private javax.swing.JComboBox<String> boxTorneos;
     private javax.swing.JComboBox<String> cmbPartidos;
-    private javax.swing.JComboBox<String> cmbTorneos;
     private javax.swing.JButton cmdCambiarEstado;
     private javax.swing.JButton cmdSolicitarCancelacion;
     private javax.swing.JLabel jLabel1;
@@ -208,8 +228,10 @@ FormPrincipal myP;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtArea;
+    private javax.swing.JTextField txtIdPartido;
     // End of variables declaration//GEN-END:variables
 }
