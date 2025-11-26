@@ -16,12 +16,18 @@ FormPrincipal myP;
     public FormCancelarPartido(FormPrincipal p) {
         initComponents();
         this.myP = p;
-        this.cmbPartidos.addItem("1");
-        this.cmbPartidos.addItem("2");
-        this.cmbPartidos.addItem("3");
-        this.cmdCambiarEstado.setEnabled(false);
+        comboPartidos("Liga BetPlay Dimayor primera A");
     }
-    
+    public void comboPartidos(String torneo){
+        cmbPartido.removeAllItems();
+        if(this.myP.getMyEstadio().cantidadPartidosTorneo(torneo)==0){
+            cmbPartido.addItem("No hay partidos programados");
+        }else{
+            for(int i = 0; i<this.myP.getMyEstadio().cantidadPartidosTorneo(torneo);i++){
+                cmbPartido.addItem(myP.getMyEstadio().darFormatoPartido(i,torneo));
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,19 +39,17 @@ FormPrincipal myP;
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        boxTorneos = new javax.swing.JComboBox<>();
+        cmbTorneos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cmdCambiarEstado = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        cmbPartidos = new javax.swing.JComboBox<>();
+        cmbPartido = new javax.swing.JComboBox<>();
         boxEstado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
         cmdSolicitarCancelacion = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtIdPartido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,10 +57,10 @@ FormPrincipal myP;
 
         jLabel1.setText("Cambiar Estado Partido");
 
-        boxTorneos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liga BetPlay Dimayor primera A", "La primera B", "CONMEBOL Libertadores", "CONMEBOL Sudamericana" }));
-        boxTorneos.addActionListener(new java.awt.event.ActionListener() {
+        cmbTorneos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liga BetPlay Dimayor primera A", "La primera B", "CONMEBOL Libertadores", "CONMEBOL Sudamericana" }));
+        cmbTorneos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxTorneosActionPerformed(evt);
+                cmbTorneosActionPerformed(evt);
             }
         });
 
@@ -88,8 +92,6 @@ FormPrincipal myP;
             }
         });
 
-        jLabel6.setText("Id Partido");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -97,14 +99,21 @@ FormPrincipal myP;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
+                        .addGap(200, 200, 200)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(cmdCambiarEstado))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cmdSolicitarCancelacion)
-                            .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4)))
+                        .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
@@ -112,16 +121,9 @@ FormPrincipal myP;
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbPartidos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbPartido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(boxEstado, 0, 207, Short.MAX_VALUE)
-                                    .addComponent(txtIdPartido)
-                                    .addComponent(boxTorneos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(cmdCambiarEstado)))
+                                    .addComponent(cmbTorneos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,32 +133,26 @@ FormPrincipal myP;
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cmbPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(boxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtIdPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(cmdSolicitarCancelacion)
-                        .addGap(47, 47, 47)
-                        .addComponent(cmdCambiarEstado)
-                        .addGap(38, 38, 38))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(cmdSolicitarCancelacion))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addComponent(cmdCambiarEstado)
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,31 +169,18 @@ FormPrincipal myP;
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTorneosActionPerformed
-        String seleccion = this.boxTorneos.getSelectedItem().toString();
-
-        // Limpiar el segundo combo
-        this.cmbPartidos.removeAllItems();
-
-        // Dependiendo de la selección, agregamos nuevos valores
-        if (seleccion.equals("Liga BetPlay Dimayor primera A")) {
-            this.cmbPartidos.addItem("1");
-            this.cmbPartidos.addItem("2");
-            this.cmbPartidos.addItem("3");
-
-        } else if (seleccion.equals("La primera B")) {
-            this.cmbPartidos.addItem("1");
-            this.cmbPartidos.addItem("2");
-
-
+    private void cmbTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTorneosActionPerformed
+        String seleccion = this.cmbTorneos.getSelectedItem().toString();
+        if(seleccion != null){
+            this.comboPartidos(seleccion);
         } 
-    }//GEN-LAST:event_boxTorneosActionPerformed
+    }//GEN-LAST:event_cmbTorneosActionPerformed
 
     private void cmdSolicitarCancelacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSolicitarCancelacionActionPerformed
         // TODO add your handling code here:
@@ -206,10 +189,11 @@ FormPrincipal myP;
 
     private void cmdCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCambiarEstadoActionPerformed
         // TODO add your handling code here:
-        String torneo = (String) this.boxTorneos.getSelectedItem();
-        int id = Integer.parseInt(this.txtIdPartido.getText());
+        String torneo = (String) this.cmbTorneos.getSelectedItem();
+        String[] cadenaPartidoSeparada = this.cmbPartido.getSelectedItem().toString().split("\\.");
+        int idPartido = Integer.parseInt(cadenaPartidoSeparada[0]);
         String estado = (String) this.boxEstado.getSelectedItem();
-        String resultado = this.myP.getMyEstadio().cancelarPartido(torneo, id, estado);
+        String resultado = this.myP.getMyEstadio().cancelarPartido(torneo, idPartido, estado);
     }//GEN-LAST:event_cmdCambiarEstadoActionPerformed
 
     /**
@@ -219,8 +203,8 @@ FormPrincipal myP;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxEstado;
-    private javax.swing.JComboBox<String> boxTorneos;
-    private javax.swing.JComboBox<String> cmbPartidos;
+    private javax.swing.JComboBox<String> cmbPartido;
+    private javax.swing.JComboBox<String> cmbTorneos;
     private javax.swing.JButton cmdCambiarEstado;
     private javax.swing.JButton cmdSolicitarCancelacion;
     private javax.swing.JLabel jLabel1;
@@ -228,10 +212,8 @@ FormPrincipal myP;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtArea;
-    private javax.swing.JTextField txtIdPartido;
     // End of variables declaration//GEN-END:variables
 }

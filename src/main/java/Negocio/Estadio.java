@@ -213,7 +213,7 @@ public class Estadio {
             }
             precioBoleta = t.getValorBoleta()+this.calcularRecargo(torneo,p.getIdTribuna(),p.getNivel(),t.getValorBoleta());
             precioTotal += precioBoleta;
-            idBoleta = myBoletas.size()+1;
+            idBoleta = myBoletas.size();
             myBoletas.add(new Boleta(a,t.buscarPartido(idPartido),p.getNumeroCompuesto(),idBoleta,LocalDate.now().toString(),LocalTime.now().withNano(0).toString(),precioBoleta));
             t.añadirPuestoVendidoPartido(t.buscarPartido(idPartido),p.getNumeroCompuesto());
         }
