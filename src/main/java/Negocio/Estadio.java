@@ -206,9 +206,7 @@ public class Estadio {
         int idBoleta = 0;
         String[] cadenaPartidoSeparada = partido.split("\\."); 
         int idPartido = Integer.parseInt(cadenaPartidoSeparada[0]);
-        for(String myP :puestos){
-            String[] cadenaPuestoSeparada = myP.split("-"); 
-            Tribuna t = buscarTribuna(cadenaPuestoSeparada);
+        for(String myP :puestos){ 
             Puesto p= buscarPuesto(myP);
             if(p == null){
                 return ("NO EXISTE EL PUESTO: " + myP);
@@ -229,6 +227,9 @@ public class Estadio {
         Puesto p = null;
         for(Tribuna t:myTribunas){
             p = t.busquedaPuesto(myP);
+            if(p != null){
+                return p;  
+            }
         }
         return p;
     }
@@ -351,5 +352,10 @@ public class Estadio {
     public String darFormatoPartido(int idPartido,String torneo){
         Torneo t = this.buscarTorneo(torneo);
         return t.crearFormatoPartido(idPartido);
+    }
+    //Devolver puestos vendidos de un partido de un torneo
+    public ArrayList<String> puestosPartido(String torneo,int idPartido){
+        Torneo t = this.buscarTorneo(torneo);
+        return t.puestosVendidosPartido(idPartido);
     }
 }

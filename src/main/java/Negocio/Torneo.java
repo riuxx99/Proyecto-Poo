@@ -179,6 +179,11 @@ public class Torneo {
         }
         return cad;
     }
+    //Retornar puestos Vendidos de un partido
+    public ArrayList<String> puestosVendidosPartido(int idPartido){
+        Partido p = this.buscarPartido(idPartido);
+        return p.getPuestosVendidos();
+    }
     //crear Formato Partido
     public String crearFormatoPartido(int index){
         Partido p = this.myPartidos.get(index);

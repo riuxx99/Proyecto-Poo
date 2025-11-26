@@ -30,53 +30,50 @@ public class FormVenderBoletas extends javax.swing.JFrame {
     int columnas = 10;
     int largoBoton = 100;
     int anchoBoton = 40;    
-    //int ejeX = 35;
-    //int ejeY = 20;
-    
+ 
     public JToggleButton [][] JTBotones = new JToggleButton[filas][columnas];
     public void botones (){
-    int ejeX = 35;
-    int ejeY = 20;
+        
+        int ejeX = 35;
+        int ejeY = 20;
 
-    JTBotones = new JToggleButton[filas][columnas];
-    String tribuna = this.cmbTribuna.getSelectedItem().toString();
+        JTBotones = new JToggleButton[filas][columnas];
+        String tribuna = this.cmbTribuna.getSelectedItem().toString();
 
-    for(int i = 0; i < filas; i++){
-        for(int j = 0; j < columnas; j++){
+        for(int i = 0; i < filas; i++){
+            for(int j = 0; j < columnas; j++){
 
-            JTBotones[i][j] = new JToggleButton();
-            JTBotones[i][j].setBounds(ejeX, ejeY, largoBoton, anchoBoton);
-            JTBotones[i][j].setText(myP.getMyEstadio().sacarNumPuesto(tribuna, (i*10)+j));
+                JTBotones[i][j] = new JToggleButton();
+                JTBotones[i][j].setBounds(ejeX, ejeY, largoBoton, anchoBoton);
+                JTBotones[i][j].setText(myP.getMyEstadio().sacarNumPuesto(tribuna, (i*10)+j));
+                
+                JTBotones[i][j].setContentAreaFilled(false);
+                JTBotones[i][j].setOpaque(true);
+                
+                Color colorNormal = new Color(214,214,214);    
+                Color colorSeleccion = new Color(0,153,51); 
 
-            
-            JTBotones[i][j].setContentAreaFilled(false);
-            JTBotones[i][j].setOpaque(true);
-
-            
-            Color colorNormal = new Color(214,214,214);    
-            Color colorSeleccion = new Color(0,153,51); 
-
-            JTBotones[i][j].setBackground(colorNormal);
-
-            
-            int fila=i, col=j; 
-            JTBotones[i][j].addChangeListener(e -> {
-                if (JTBotones[fila][col].isSelected()) {
-                    JTBotones[fila][col].setBackground(colorSeleccion);
-                } else {
-                    JTBotones[fila][col].setBackground(colorNormal);
-                }
-            });
-
-            pnlPuestos.add(JTBotones[i][j]);
-            ejeX += 125;
+                JTBotones[i][j].setBackground(colorNormal);
+                
+                int fila=i, col=j;  
+                JTBotones[i][j].addChangeListener(e -> {
+                    if (JTBotones[fila][col].isSelected()) {
+                        JTBotones[fila][col].setBackground(colorSeleccion);
+                    } else {
+                        if (JTBotones[fila][col].isEnabled()) {
+                            JTBotones[fila][col].setBackground(colorNormal);
+                        }
+                    }
+                });
+                pnlPuestos.add(JTBotones[i][j]);
+                ejeX += 125;
+            }
+            ejeX = 35;
+            ejeY += 50;
         }
-        ejeX = 35;
-        ejeY += 50;
     }
-}
     public void comboPartidos(String torneo){
-        cmbPartido.removeAll();
+        cmbPartido.removeAllItems();
         if(this.myP.getMyEstadio().cantidadPartidosTorneo(torneo)==0){
             cmbPartido.addItem("No hay partidos programados");
         }else{
@@ -85,9 +82,40 @@ public class FormVenderBoletas extends javax.swing.JFrame {
             }
         }
     }
-   public void reservarPuesto(){
+   public void bloquearPuestos(ArrayList<String> puestos){
+       for(String p : puestos){
+            for(int i = 0; i < filas; i++){
+                for(int j = 0; j < columnas; j++){
+                    if(this.JTBotones[i][j].getText().equals(p)){
+                        JTBotones[i][j].setBackground(Color.RED);
+                        JTBotones[i][j].setEnabled(false);
+                    }
+                }
+            } 
+       }
        
    }
+    public void cargarBotonesDelPartido(String torneo, int idPartido) {
+        pnlPuestos.removeAll();   
+        pnlPuestos.revalidate();
+        pnlPuestos.repaint();
+        botones();
+        ArrayList<String> vendidos = myP.getMyEstadio().puestosPartido(torneo, idPartido);
+        bloquearPuestos(vendidos);
+    }
+    public void actualizarPuestos(String torneo){
+        botones();
+        Object selectedItem = cmbPartido.getSelectedItem();
+        if (selectedItem != null) {
+            String partido = selectedItem.toString();
+
+            if (!partido.equals("No hay partidos programados")) {
+                    String[] cadenaPartidoSeparada = partido.split("\\.");
+                    int idPartido = Integer.parseInt(cadenaPartidoSeparada[0]);
+                    cargarBotonesDelPartido(torneo, idPartido);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -195,6 +223,12 @@ public class FormVenderBoletas extends javax.swing.JFrame {
         );
 
         jLabel8.setText("Puesto Ocupado");
+
+        cmbPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPartidoActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(214, 214, 214));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -306,14 +340,19 @@ public class FormVenderBoletas extends javax.swing.JFrame {
 
     private void cmbTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTorneoActionPerformed
         String torneo = this.cmbTorneo.getSelectedItem().toString();
+        pnlPuestos.removeAll();
+        pnlPuestos.revalidate();
+        pnlPuestos.repaint();
         comboPartidos(torneo);
+        actualizarPuestos(torneo);
     }//GEN-LAST:event_cmbTorneoActionPerformed
 
     private void cmbTribunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTribunaActionPerformed
         pnlPuestos.removeAll();
         pnlPuestos.revalidate();
         pnlPuestos.repaint();
-        botones();
+        String torneo = this.cmbTorneo.getSelectedItem().toString();
+        actualizarPuestos(torneo);
     }//GEN-LAST:event_cmbTribunaActionPerformed
 
     private void comprarBoletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarBoletaActionPerformed
@@ -331,7 +370,22 @@ public class FormVenderBoletas extends javax.swing.JFrame {
         }
         String cad = this.myP.getMyEstadio().ventaBoleta(torneo, cedula, partido, puestosSeleccionados);
         JOptionPane.showMessageDialog(this, cad);
+        String[] cadenaPartidoSeparada = partido.split("\\."); 
+        int idPartido = Integer.parseInt(cadenaPartidoSeparada[0]);
+        cargarBotonesDelPartido(torneo, idPartido);
     }//GEN-LAST:event_comprarBoletaActionPerformed
+
+    private void cmbPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPartidoActionPerformed
+    if (cmbPartido.getSelectedItem() != null) { 
+        String torneo = this.cmbTorneo.getSelectedItem().toString();
+        String partido = cmbPartido.getSelectedItem().toString();
+        if (!partido.equals("No hay partidos programados")) {
+            String[] cadenaPartidoSeparada = partido.split("\\.");  
+            int idPartido = Integer.parseInt(cadenaPartidoSeparada[0]);
+            cargarBotonesDelPartido(torneo, idPartido);
+        }
+    }
+    }//GEN-LAST:event_cmbPartidoActionPerformed
 
     /**
      * @param args the command line arguments
