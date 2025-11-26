@@ -193,7 +193,7 @@ public class Estadio {
     }
     
         //Vender Boleta
-    public String ventaBoleta(String torneo,int cedula,int idPartido, ArrayList<String> puestos){
+    public String ventaBoleta(String torneo,int cedula,String partido, ArrayList<String> puestos){
         Aficionado a = this.validarCedula(cedula);
         if(a==null){
             return "No se ha encontrado un aficionado con esta cedula";
@@ -204,13 +204,12 @@ public class Estadio {
         double precioTotal = 0F;
         double precioBoleta = 0F;
         int idBoleta = 0;
+        String[] cadenaPartidoSeparada = partido.split("\\."); int idPartido = Integer.parseInt(cadenaPartidoSeparada[0]);
         for(String myP :puestos){
             p= buscarPuesto(myP);
             precioBoleta = t.getValorBoleta()+this.calcularRecargo(torneo,p.getIdTribuna(),p.getNivel(),t.getValorBoleta());
             precioTotal += precioBoleta;
-            if(!myBoletas.isEmpty()){
-                idBoleta +=1 ;
-            }
+            idBoleta = myBoletas.size();
             myBoletas.add(new Boleta(a,t.buscarPartido(idPartido),idBoleta,LocalDate.now().toString(),LocalTime.now().withNano(0).toString(),precioBoleta));
             t.añadirPuestoVendidoPartido(t.buscarPartido(idPartido),p.getNumeroCompuesto());
         }
@@ -325,5 +324,25 @@ public class Estadio {
         cad += "Nombre Torneo: "+t.getNombre()+"\nId\tFecha Partido\tHora\tEquipo Local\tEquipo Visitante\tEstado";  
         cad += t.listarPartidosTorneo();
         return cad;
+    }
+    //Obtener num puestos de una tribuna
+    public String sacarNumPuesto(String tribuna,int num){
+        String puesto="";
+        for(Tribuna t:myTribunas){
+            if(t.getNombre().equals(tribuna)){
+               puesto = t.getPuesto(num);
+            }
+        }
+        return puesto;
+    }
+    //Cantidad Partidos torneo
+    public int cantidadPartidosTorneo(String torneo){
+        Torneo t = this.buscarTorneo(torneo);
+        return t.getMyPartidos().size();
+    }
+    //dar formato Partido
+    public String darFormatoPartido(int idPartido,String torneo){
+        Torneo t = this.buscarTorneo(torneo);
+        return t.crearFormatoPartido(idPartido);
     }
 }

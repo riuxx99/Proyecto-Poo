@@ -51,7 +51,9 @@ public class Tribuna {
     public Puesto[] getMyPuestos() {
         return myPuestos;
     }
-    
+    public String getPuesto(int numero){
+        return myPuestos[numero].getNumeroCompuesto();
+    }
     //metodo para asignar un nivel al puesto
     public int asignarNivel(int i){
         int nivel = 0;

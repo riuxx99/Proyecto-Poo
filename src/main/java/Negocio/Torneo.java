@@ -95,18 +95,21 @@ public class Torneo {
         }
         return cad;
     }
-    //Metodo para verificar cuantos partidos estan activos en un torneo para poder vender los planes al precio correcto
-    public int verificarPartidos(){
+    
+    public int cantidadPartidos(String equipo){
         int Contador = 0;
-        Partido p = null;
-        for(Partido t:myPartidos){
-            if(t.getEstado().equalsIgnoreCase("Activo")){
-                p = t;
+        String eq = equipo.toLowerCase();
+
+        for (Partido p : myPartidos){
+            if (p.getEquipoLocal().toLowerCase().equals(eq)||  p.getEquipoVisitante().toLowerCase().equals(eq)){
                 Contador++;
-            }
         }
-        return Contador;
     }
+
+    return Contador;
+}
+     
+    
     public Partido buscarPartido(int idPartido){
         for(Partido p: myPartidos){
             if(p.getId()==idPartido){
@@ -174,6 +177,11 @@ public class Torneo {
             
         }
         return cad;
+    }
+    //crear Formato Partido
+    public String crearFormatoPartido(int index){
+        Partido p = this.myPartidos.get(index);
+        return p.getId()+". "+p.getEquipoLocal()+" VS "+p.getEquipoVisitante();
     }
     @Override
     public String toString() {

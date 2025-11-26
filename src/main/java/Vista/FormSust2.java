@@ -18,6 +18,7 @@ public class FormSust2 extends javax.swing.JFrame {
     public FormSust2(FormPrincipal p) {
         initComponents();
         this.myP = p;
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -103,7 +104,7 @@ public class FormSust2 extends javax.swing.JFrame {
         if(equipo.isEmpty()){
             JOptionPane.showMessageDialog(this, "Ingrese un equipo a buscar");
         }
-        this.txtAMostrar.setText(this.myP.getMyEstadio().programacionPartidosEquipo(equipo));
+        //this.txtAMostrar.setText(this.myP.getMyEstadio().programacionPartidosEquipo(equipo));
         
     }//GEN-LAST:event_buscarPartidosActionPerformed
 
